@@ -14,11 +14,13 @@
             min-height: 100vh; color: #fff;
         }
         nav {
-            background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
-            padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
-            position: sticky; top: 0; z-index: 100;
-            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
-        }
+    background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
+    padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
+    position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+    border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+    transition: transform 0.4s ease;
+}
+nav.nav-hidden { transform: translateY(-100%); }
         .logo { display: flex; align-items: center; gap: 12px; }
         .logo img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #d4af37; }
         .logo-text { font-size: 1.5rem; font-weight: 900; color: #d4af37; letter-spacing: 2px; }
@@ -584,9 +586,26 @@
         }
 
         document.addEventListener('DOMContentLoaded', () => {
-            renderGrid(atsJobs, 'atsGrid', jobIcons, 'badge-ats', 'ATS');
-            document.getElementById('jobsCount').textContent = atsJobs.length + "+";
-        });
+    renderGrid(atsJobs, 'atsGrid', jobIcons, 'badge-ats', 'ATS');
+    document.getElementById('jobsCount').textContent = atsJobs.length + "+";
+    
+    // Hide navbar on scroll down, show on scroll up
+    let lastScroll = 0;
+    const nav = document.querySelector('nav');
+    window.addEventListener('scroll', () => {
+        const currentScroll = window.pageYOffset;
+        if (currentScroll <= 0) {
+            nav.classList.remove('nav-hidden');
+            return;
+        }
+        if (currentScroll > lastScroll && !nav.classList.contains('nav-hidden')) {
+            nav.classList.add('nav-hidden');
+        } else if (currentScroll < lastScroll && nav.classList.contains('nav-hidden')) {
+            nav.classList.remove('nav-hidden');
+        }
+        lastScroll = currentScroll;
+    });
+});
     </script>
 </body>
 </html>
