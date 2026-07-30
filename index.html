@@ -1,0 +1,577 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CAREER CV - ATS Templates</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Cairo', sans-serif;
+            background: linear-gradient(135deg, #0d3b2e 0%, #1a5c4a 50%, #0d3b2e 100%);
+            min-height: 100vh;
+            color: #fff;
+        }
+
+        /* Navbar */
+        nav {
+            background: rgba(0,0,0,0.3);
+            backdrop-filter: blur(10px);
+            padding: 15px 50px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+        }
+
+        .logo img {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid #d4af37;
+        }
+
+        .logo-text {
+            font-size: 1.5rem;
+            font-weight: 900;
+            color: #d4af37;
+            letter-spacing: 2px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 30px;
+        }
+
+        .nav-links a {
+            color: #fff;
+            text-decoration: none;
+            font-weight: 600;
+            padding: 8px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            border: 1px solid transparent;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            background: rgba(212, 175, 55, 0.2);
+            border-color: #d4af37;
+            color: #d4af37;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 80px 20px 60px;
+        }
+
+        .hero-logo {
+            width: 180px;
+            height: 180px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #d4af37;
+            box-shadow: 0 0 40px rgba(212, 175, 55, 0.4);
+            margin-bottom: 30px;
+            animation: float 3s ease-in-out infinite;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-15px); }
+        }
+
+        .hero h1 {
+            font-size: 3.5rem;
+            font-weight: 900;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.3);
+        }
+
+        .hero p {
+            font-size: 1.3rem;
+            max-width: 700px;
+            margin: 0 auto 30px;
+            line-height: 1.8;
+            color: rgba(255,255,255,0.9);
+        }
+
+        .btn-primary {
+            display: inline-block;
+            background: linear-gradient(135deg, #d4af37, #b8941f);
+            color: #0d3b2e;
+            padding: 15px 50px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 900;
+            font-size: 1.2rem;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 30px rgba(212, 175, 55, 0.3);
+            border: none;
+            cursor: pointer;
+        }
+
+        .btn-primary:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 40px rgba(212, 175, 55, 0.5);
+        }
+
+        /* Features */
+        .features {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            max-width: 1200px;
+            margin: 60px auto;
+            padding: 0 20px;
+        }
+
+        .feature-card {
+            background: rgba(255,255,255,0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 35px 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .feature-card:hover {
+            transform: translateY(-10px);
+            border-color: #d4af37;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .feature-icon {
+            font-size: 3rem;
+            margin-bottom: 15px;
+        }
+
+        .feature-card h3 {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 10px;
+        }
+
+        .feature-card p {
+            color: rgba(255,255,255,0.8);
+            line-height: 1.6;
+        }
+
+        /* ATS Section */
+        .ats-section {
+            display: none;
+            padding: 60px 20px;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .ats-header {
+            text-align: center;
+            margin-bottom: 50px;
+        }
+
+        .ats-header h2 {
+            font-size: 2.5rem;
+            color: #d4af37;
+            margin-bottom: 10px;
+        }
+
+        .ats-header p {
+            color: rgba(255,255,255,0.8);
+            font-size: 1.1rem;
+        }
+
+        .search-box {
+            max-width: 600px;
+            margin: 0 auto 40px;
+            position: relative;
+        }
+
+        .search-box input {
+            width: 100%;
+            padding: 18px 25px 18px 55px;
+            border-radius: 50px;
+            border: 2px solid rgba(212, 175, 55, 0.3);
+            background: rgba(255,255,255,0.1);
+            color: #fff;
+            font-size: 1rem;
+            font-family: 'Cairo', sans-serif;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+
+        .search-box input::placeholder {
+            color: rgba(255,255,255,0.5);
+        }
+
+        .search-box input:focus {
+            border-color: #d4af37;
+            background: rgba(255,255,255,0.15);
+        }
+
+        .search-icon {
+            position: absolute;
+            left: 22px;
+            top: 50%;
+            transform: translateY(-50%);
+            font-size: 1.2rem;
+            color: #d4af37;
+        }
+
+        .jobs-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 25px;
+        }
+
+        .job-card {
+            background: rgba(255,255,255,0.05);
+            border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .job-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, #d4af37, #b8941f);
+            transform: scaleX(0);
+            transition: transform 0.3s ease;
+        }
+
+        .job-card:hover::before {
+            transform: scaleX(1);
+        }
+
+        .job-card:hover {
+            transform: translateY(-5px);
+            border-color: #d4af37;
+            background: rgba(255,255,255,0.1);
+        }
+
+        .job-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+        }
+
+        .job-title {
+            font-size: 1.2rem;
+            font-weight: 700;
+            color: #fff;
+            margin-bottom: 8px;
+            line-height: 1.4;
+        }
+
+        .job-meta {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255,255,255,0.6);
+            font-size: 0.9rem;
+            margin-bottom: 20px;
+        }
+
+        .job-actions {
+            display: flex;
+            gap: 10px;
+        }
+
+        .btn-view, .btn-download {
+            flex: 1;
+            padding: 12px;
+            border-radius: 12px;
+            text-align: center;
+            text-decoration: none;
+            font-weight: 600;
+            font-size: 0.9rem;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+            font-family: 'Cairo', sans-serif;
+        }
+
+        .btn-view {
+            background: rgba(212, 175, 55, 0.2);
+            color: #d4af37;
+            border: 1px solid #d4af37;
+        }
+
+        .btn-view:hover {
+            background: #d4af37;
+            color: #0d3b2e;
+        }
+
+        .btn-download {
+            background: #d4af37;
+            color: #0d3b2e;
+        }
+
+        .btn-download:hover {
+            background: #b8941f;
+        }
+
+        .back-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            color: #d4af37;
+            text-decoration: none;
+            margin-bottom: 30px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .back-btn:hover {
+            gap: 15px;
+        }
+
+        /* Footer */
+        footer {
+            text-align: center;
+            padding: 30px;
+            border-top: 1px solid rgba(212, 175, 55, 0.2);
+            margin-top: 60px;
+            color: rgba(255,255,255,0.6);
+        }
+
+        footer span {
+            color: #d4af37;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.2rem; }
+            nav { padding: 15px 20px; }
+            .nav-links { gap: 15px; }
+            .nav-links a { padding: 6px 15px; font-size: 0.9rem; }
+        }
+
+        .no-results {
+            text-align: center;
+            padding: 60px 20px;
+            color: rgba(255,255,255,0.6);
+            font-size: 1.2rem;
+            grid-column: 1 / -1;
+        }
+
+        .stats-bar {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            margin: 30px 0;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: 900;
+            color: #d4af37;
+        }
+
+        .stat-label {
+            color: rgba(255,255,255,0.7);
+            font-size: 0.95rem;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- Navbar -->
+    <nav>
+        <div class="logo">
+            <img src="https://i.imgur.com/placeholder.png" alt="CAREER CV Logo" id="navLogo">
+            <span class="logo-text">CAREER CV</span>
+        </div>
+        <div class="nav-links">
+            <a href="#" class="active" onclick="showHome()">الرئيسية</a>
+            <a href="#" onclick="showATS()">نماذج ATS</a>
+        </div>
+    </nav>
+
+    <!-- Home Section -->
+    <section id="homeSection">
+        <div class="hero">
+            <img src="https://i.imgur.com/placeholder.png" alt="CAREER CV" class="hero-logo" id="heroLogo">
+            <h1>CAREER CV</h1>
+            <p>نحن متخصصون في إعداد السير الذاتية الاحترافية المتوافقة مع أنظمة التتبع الآلي (ATS) لمساعدتك في الحصول على وظيفة أحلامك</p>
+            
+            <div class="stats-bar">
+                <div class="stat-item">
+                    <div class="stat-number" id="jobsCount">32+</div>
+                    <div class="stat-label">نموذج وظيفي</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">100%</div>
+                    <div class="stat-label">متوافق مع ATS</div>
+                </div>
+                <div class="stat-item">
+                    <div class="stat-number">500+</div>
+                    <div class="stat-label">عميل سعيد</div>
+                </div>
+            </div>
+
+            <a href="#" class="btn-primary" onclick="showATS()">📄 تصفح نماذج ATS</a>
+        </div>
+
+        <div class="features">
+            <div class="feature-card">
+                <div class="feature-icon">🎯</div>
+                <h3>متوافق مع ATS</h3>
+                <p>جميع النماذج مصممة بعناية لتمر من أنظمة الفرز الآلي بنجاح تام</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">⚡</div>
+                <h3>تحديث مستمر</h3>
+                <p>نضيف نماذج جديدة باستمرار لتغطية جميع المجالات الوظيفية</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">🎨</div>
+                <h3>تصميم احترافي</h3>
+                <p>تصاميم عصرية تجمع بين الجمال والوظيفية</p>
+            </div>
+            <div class="feature-card">
+                <div class="feature-icon">💼</div>
+                <h3>تخصيص كامل</h3>
+                <p>يمكن تخصيص كل نموذج ليناسب خبراتك ومؤهلاتك</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- ATS Section -->
+    <section class="ats-section" id="atsSection">
+        <a href="#" class="back-btn" onclick="showHome()">← العودة للرئيسية</a>
+        
+        <div class="ats-header">
+            <h2>📋 نماذج ATS الوظيفية</h2>
+            <p>اختر النموذج المناسب لوظيفتك وحمّله مباشرة</p>
+        </div>
+
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchInput" placeholder="ابحث عن وظيفة..." oninput="filterJobs()">
+        </div>
+
+        <div class="jobs-grid" id="jobsGrid">
+            <!-- سيتم ملؤها بالJavaScript -->
+        </div>
+    </section>
+
+    <footer>
+        <p>© 2025 <span>CAREER CV</span> - جميع الحقوق محفوظة</p>
+    </footer>
+
+    <script>
+        // ===== هنا تحط روابط ملفاتك من Google Drive =====
+        // الصيغة: { title: "اسم الوظيفة", fileId: "FILE_ID" }
+        // هتحول الرابط العادي لرابط مباشر: https://drive.google.com/uc?export=download&id=FILE_ID
+        
+        const jobs = [
+            { title: "Business Development", fileId: "YOUR_FILE_ID_1" },
+            { title: "Industrial Projects & Nuclear Power", fileId: "YOUR_FILE_ID_2" },
+            { title: "Assistant General Manager", fileId: "YOUR_FILE_ID_3" },
+            { title: "Barista Supervisor", fileId: "YOUR_FILE_ID_4" },
+            { title: "Business Administration Lecturer", fileId: "YOUR_FILE_ID_5" },
+            { title: "Chef", fileId: "YOUR_FILE_ID_6" },
+            { title: "CIVIL ENGINEER", fileId: "YOUR_FILE_ID_7" },
+            { title: "Construction Manager", fileId: "YOUR_FILE_ID_8" },
+            // ضيف باقي الوظائف هنا بنفس الصيغة
+        ];
+
+        const jobIcons = ["💼", "🏗️", "👔", "☕", "🎓", "👨‍🍳", "🏛️", "🏢", "📊", "🔧", "💻", "📱", "🚗", "✈️", "🏥", "⚖️", "🎬", "📰", "🌾", "🔬", "🎨", "🎵", "📷", "✍️", "🧮", "🗺️", "🔌", "🛢️", "🏭", "🚢", "🚛", "🏪"];
+
+        function getDirectLink(fileId) {
+            return `https://drive.google.com/uc?export=download&id=${fileId}`;
+        }
+
+        function getViewLink(fileId) {
+            return `https://drive.google.com/file/d/${fileId}/preview`;
+        }
+
+        function renderJobs(filter = "") {
+            const grid = document.getElementById('jobsGrid');
+            const filtered = jobs.filter(j => j.title.toLowerCase().includes(filter.toLowerCase()));
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة للبحث</div>';
+                return;
+            }
+
+            grid.innerHTML = filtered.map((job, i) => `
+                <div class="job-card">
+                    <div class="job-icon">${jobIcons[i % jobIcons.length]}</div>
+                    <div class="job-title">${job.title}</div>
+                    <div class="job-meta">
+                        <span>📄</span>
+                        <span>PDF - جاهز للتحميل</span>
+                    </div>
+                    <div class="job-actions">
+                        <a href="${getViewLink(job.fileId)}" target="_blank" class="btn-view">👁️ معاينة</a>
+                        <a href="${getDirectLink(job.fileId)}" class="btn-download">⬇️ تحميل</a>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function showHome() {
+            document.getElementById('homeSection').style.display = 'block';
+            document.getElementById('atsSection').style.display = 'none';
+            document.querySelectorAll('.nav-links a')[0].classList.add('active');
+            document.querySelectorAll('.nav-links a')[1].classList.remove('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+        }
+
+        function showATS() {
+            document.getElementById('homeSection').style.display = 'none';
+            document.getElementById('atsSection').style.display = 'block';
+            document.querySelectorAll('.nav-links a')[0].classList.remove('active');
+            document.querySelectorAll('.nav-links a')[1].classList.add('active');
+            window.scrollTo({ top: 0, behavior: 'smooth' });
+            renderJobs();
+        }
+
+        function filterJobs() {
+            const val = document.getElementById('searchInput').value;
+            renderJobs(val);
+        }
+
+        // تحميل الشعار من الملف المحلي
+        document.addEventListener('DOMContentLoaded', () => {
+            // لو عندك الشعار في نفس المجلد سميه logo.png
+            const logoPath = 'sama.jpg';
+            document.getElementById('navLogo').src = logoPath;
+            document.getElementById('heroLogo').src = logoPath;
+            
+            renderJobs();
+        });
+    </script>
+</body>
+</html>
