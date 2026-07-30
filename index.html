@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CAREER CV - ATS Templates</title>
+    <title>CAREER CV - Professional Templates</title>
     <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@400;600;700;900&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
     <style>
@@ -15,17 +15,18 @@
         }
         nav {
             background: rgba(0,0,0,0.3); backdrop-filter: blur(10px);
-            padding: 15px 50px; display: flex; justify-content: space-between; align-items: center;
+            padding: 15px 30px; display: flex; justify-content: space-between; align-items: center;
             position: sticky; top: 0; z-index: 100;
             border-bottom: 1px solid rgba(212, 175, 55, 0.3);
         }
         .logo { display: flex; align-items: center; gap: 12px; }
         .logo img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #d4af37; }
         .logo-text { font-size: 1.5rem; font-weight: 900; color: #d4af37; letter-spacing: 2px; }
-        .nav-links { display: flex; gap: 30px; }
+        .nav-links { display: flex; gap: 15px; flex-wrap: wrap; }
         .nav-links a {
             color: #fff; text-decoration: none; font-weight: 600;
-            padding: 8px 20px; border-radius: 25px; transition: all 0.3s ease; border: 1px solid transparent;
+            padding: 8px 16px; border-radius: 25px; transition: all 0.3s ease; border: 1px solid transparent;
+            font-size: 0.9rem;
         }
         .nav-links a:hover, .nav-links a.active { background: rgba(212, 175, 55, 0.2); border-color: #d4af37; color: #d4af37; }
         .hero { text-align: center; padding: 80px 20px 60px; }
@@ -57,10 +58,12 @@
         .feature-icon { font-size: 3rem; margin-bottom: 15px; }
         .feature-card h3 { color: #d4af37; font-size: 1.3rem; margin-bottom: 10px; }
         .feature-card p { color: rgba(255,255,255,0.8); line-height: 1.6; }
-        .ats-section { display: none; padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
-        .ats-header { text-align: center; margin-bottom: 50px; }
-        .ats-header h2 { font-size: 2.5rem; color: #d4af37; margin-bottom: 10px; }
-        .ats-header p { color: rgba(255,255,255,0.8); font-size: 1.1rem; }
+        
+        /* ===== SECTIONS COMMON ===== */
+        .section { display: none; padding: 60px 20px; max-width: 1400px; margin: 0 auto; }
+        .section-header { text-align: center; margin-bottom: 50px; }
+        .section-header h2 { font-size: 2.5rem; color: #d4af37; margin-bottom: 10px; }
+        .section-header p { color: rgba(255,255,255,0.8); font-size: 1.1rem; }
         .search-box { max-width: 600px; margin: 0 auto 40px; position: relative; }
         .search-box input {
             width: 100%; padding: 18px 25px 18px 55px; border-radius: 50px;
@@ -97,16 +100,29 @@
         .back-btn { display: inline-flex; align-items: center; gap: 8px; color: #d4af37; text-decoration: none; margin-bottom: 30px; font-weight: 600; transition: all 0.3s ease; }
         .back-btn:hover { gap: 15px; }
         
+        /* ===== CATEGORY TABS ===== */
+        .category-tabs {
+            display: flex; justify-content: center; gap: 15px; margin: 40px auto; max-width: 1000px;
+            flex-wrap: wrap; padding: 0 20px;
+        }
+        .cat-tab {
+            background: rgba(255,255,255,0.05); border: 1px solid rgba(212, 175, 55, 0.2);
+            border-radius: 15px; padding: 20px 25px; cursor: pointer; transition: all 0.3s ease;
+            text-align: center; min-width: 150px; color: #fff; text-decoration: none;
+        }
+        .cat-tab:hover, .cat-tab.active {
+            background: rgba(212, 175, 55, 0.2); border-color: #d4af37; transform: translateY(-5px);
+        }
+        .cat-tab i { font-size: 2rem; color: #d4af37; margin-bottom: 10px; display: block; }
+        .cat-tab span { font-weight: 700; font-size: 1rem; display: block; }
+        .cat-tab small { color: rgba(255,255,255,0.6); font-size: 0.8rem; }
+        
         /* ===== SOCIAL SECTION ===== */
         .social-section {
             max-width: 1000px; margin: 80px auto 40px; padding: 0 20px; text-align: center;
         }
-        .social-section h2 {
-            font-size: 2.2rem; color: #d4af37; margin-bottom: 10px;
-        }
-        .social-section > p {
-            color: rgba(255,255,255,0.8); margin-bottom: 40px; font-size: 1.1rem;
-        }
+        .social-section h2 { font-size: 2.2rem; color: #d4af37; margin-bottom: 10px; }
+        .social-section > p { color: rgba(255,255,255,0.8); margin-bottom: 40px; font-size: 1.1rem; }
         .social-grid {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: 25px;
         }
@@ -157,10 +173,23 @@
         .stat-number { font-size: 2.5rem; font-weight: 900; color: #d4af37; }
         .stat-label { color: rgba(255,255,255,0.7); font-size: 0.95rem; }
         .no-results { text-align: center; padding: 60px 20px; color: rgba(255,255,255,0.6); font-size: 1.2rem; grid-column: 1 / -1; }
+        
+        .badge {
+            display: inline-block; padding: 4px 12px; border-radius: 20px;
+            font-size: 0.75rem; font-weight: 700; margin-bottom: 10px;
+        }
+        .badge-ats { background: rgba(212, 175, 55, 0.2); color: #d4af37; border: 1px solid #d4af37; }
+        .badge-europass { background: rgba(0, 102, 204, 0.2); color: #66b3ff; border: 1px solid #66b3ff; }
+        .badge-canadian { background: rgba(220, 20, 60, 0.2); color: #ff6b6b; border: 1px solid #ff6b6b; }
+        .badge-qr { background: rgba(50, 205, 50, 0.2); color: #90ee90; border: 1px solid #90ee90; }
+        .badge-linkedin { background: rgba(10, 102, 194, 0.2); color: #87ceeb; border: 1px solid #87ceeb; }
+        
         @media (max-width: 768px) {
             .hero h1 { font-size: 2.2rem; } nav { padding: 15px 20px; }
-            .nav-links { gap: 15px; } .nav-links a { padding: 6px 15px; font-size: 0.9rem; }
+            .nav-links { gap: 10px; } .nav-links a { padding: 6px 12px; font-size: 0.8rem; }
             .social-grid { grid-template-columns: 1fr 1fr; }
+            .category-tabs { gap: 10px; }
+            .cat-tab { min-width: 120px; padding: 15px; }
         }
         @media (max-width: 480px) {
             .social-grid { grid-template-columns: 1fr; }
@@ -175,22 +204,57 @@
         </div>
         <div class="nav-links">
             <a href="#" class="active" onclick="showHome(); return false;">الرئيسية</a>
-            <a href="#" onclick="showATS(); return false;">نماذج ATS</a>
+            <a href="#" onclick="showSection('ats'); return false;">ATS</a>
+            <a href="#" onclick="showSection('europass'); return false;">Europass</a>
+            <a href="#" onclick="showSection('canadian'); return false;">Canadian</a>
+            <a href="#" onclick="showSection('qr'); return false;">QR</a>
+            <a href="#" onclick="showSection('linkedin'); return false;">LinkedIn</a>
         </div>
     </nav>
 
+    <!-- HOME SECTION -->
     <section id="homeSection">
         <div class="hero">
             <img src="sama.jpg" alt="CAREER CV" class="hero-logo" id="heroLogo">
             <h1>CAREER CV</h1>
             <p>نحن متخصصون في إعداد السير الذاتية الاحترافية المتوافقة مع أنظمة التتبع الآلي (ATS) لمساعدتك في الحصول على وظيفة أحلامك</p>
             <div class="stats-bar">
-                <div class="stat-item"><div class="stat-number" id="jobsCount">100+</div><div class="stat-label">نموذج وظيفي</div></div>
-                <div class="stat-item"><div class="stat-number">95%</div><div class="stat-label">متوافق مع ATS</div></div>
+                <div class="stat-item"><div class="stat-number" id="jobsCount">32+</div><div class="stat-label">نموذج وظيفي</div></div>
+                <div class="stat-item"><div class="stat-number">100%</div><div class="stat-label">متوافق مع ATS</div></div>
                 <div class="stat-item"><div class="stat-number">10000+</div><div class="stat-label">عميل سعيد</div></div>
             </div>
-            <a href="#" class="btn-primary" onclick="showATS(); return false;">📄 تصفح نماذج ATS</a>
+            <a href="#" class="btn-primary" onclick="showSection('ats'); return false;">📄 تصفح النماذج</a>
         </div>
+        
+        <!-- CATEGORY TABS -->
+        <div class="category-tabs">
+            <div class="cat-tab" onclick="showSection('ats')">
+                <i class="fas fa-file-alt"></i>
+                <span>ATS</span>
+                <small>متوافق مع الفرز الآلي</small>
+            </div>
+            <div class="cat-tab" onclick="showSection('europass')">
+                <i class="fas fa-globe-europe"></i>
+                <span>Europass</span>
+                <small>الموحد الأوروبي</small>
+            </div>
+            <div class="cat-tab" onclick="showSection('canadian')">
+                <i class="fas fa-maple-leaf"></i>
+                <span>Canadian</span>
+                <small>التنسيق الكندي</small>
+            </div>
+            <div class="cat-tab" onclick="showSection('qr')">
+                <i class="fas fa-qrcode"></i>
+                <span>QR Code</span>
+                <small>سيرة ذاتية رقمية</small>
+            </div>
+            <div class="cat-tab" onclick="showSection('linkedin')">
+                <i class="fab fa-linkedin"></i>
+                <span>LinkedIn</span>
+                <small>تحسين الملف</small>
+            </div>
+        </div>
+
         <div class="features">
             <div class="feature-card"><div class="feature-icon">🎯</div><h3>متوافق مع ATS</h3><p>جميع النماذج مصممة بعناية لتمر من أنظمة الفرز الآلي بنجاح تام</p></div>
             <div class="feature-card"><div class="feature-icon">⚡</div><h3>تحديث مستمر</h3><p>نضيف نماذج جديدة باستمرار لتغطية جميع المجالات الوظيفية</p></div>
@@ -199,20 +263,77 @@
         </div>
     </section>
 
-    <section class="ats-section" id="atsSection">
+    <!-- ATS SECTION -->
+    <section class="section" id="atsSection">
         <a href="#" class="back-btn" onclick="showHome(); return false;">← العودة للرئيسية</a>
-        <div class="ats-header">
+        <div class="section-header">
             <h2>📋 نماذج ATS الوظيفية</h2>
             <p>اختر النموذج المناسب لوظيفتك وحمّله مباشرة</p>
         </div>
         <div class="search-box">
             <span class="search-icon">🔍</span>
-            <input type="text" id="searchInput" placeholder="ابحث عن وظيفة..." oninput="filterJobs()">
+            <input type="text" id="searchATS" placeholder="ابحث في نماذج ATS..." oninput="filterSection('ats')">
         </div>
-        <div class="jobs-grid" id="jobsGrid"></div>
+        <div class="jobs-grid" id="atsGrid"></div>
     </section>
 
-    <!-- ===== SOCIAL MEDIA SECTION ===== -->
+    <!-- EUROPASS SECTION -->
+    <section class="section" id="europassSection">
+        <a href="#" class="back-btn" onclick="showHome(); return false;">← العودة للرئيسية</a>
+        <div class="section-header">
+            <h2>🇪🇺 نماذج Europass</h2>
+            <p>السيرة الذاتية الموحدة المعتمدة من الاتحاد الأوروبي</p>
+        </div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchEuropass" placeholder="ابحث في نماذج Europass..." oninput="filterSection('europass')">
+        </div>
+        <div class="jobs-grid" id="europassGrid"></div>
+    </section>
+
+    <!-- CANADIAN SECTION -->
+    <section class="section" id="canadianSection">
+        <a href="#" class="back-btn" onclick="showHome(); return false;">← العودة للرئيسية</a>
+        <div class="section-header">
+            <h2>🇨🇦 نماذج Canadian Resume</h2>
+            <p>تنسيق السيرة الذاتية الكندي المعتمد</p>
+        </div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchCanadian" placeholder="ابحث في نماذج Canadian..." oninput="filterSection('canadian')">
+        </div>
+        <div class="jobs-grid" id="canadianGrid"></div>
+    </section>
+
+    <!-- QR CODE SECTION -->
+    <section class="section" id="qrSection">
+        <a href="#" class="back-btn" onclick="showHome(); return false;">← العودة للرئيسية</a>
+        <div class="section-header">
+            <h2>📱 نماذج QR Code Resume</h2>
+            <p>سير ذاتية رقمية بكود QR للمسح السريع</p>
+        </div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchQR" placeholder="ابحث في نماذج QR..." oninput="filterSection('qr')">
+        </div>
+        <div class="jobs-grid" id="qrGrid"></div>
+    </section>
+
+    <!-- LINKEDIN SECTION -->
+    <section class="section" id="linkedinSection">
+        <a href="#" class="back-btn" onclick="showHome(); return false;">← العودة للرئيسية</a>
+        <div class="section-header">
+            <h2>💼 نماذج LinkedIn Profile</h2>
+            <p>تحسين ونماذج ملف LinkedIn الاحترافي</p>
+        </div>
+        <div class="search-box">
+            <span class="search-icon">🔍</span>
+            <input type="text" id="searchLinkedIn" placeholder="ابحث في نماذج LinkedIn..." oninput="filterSection('linkedin')">
+        </div>
+        <div class="jobs-grid" id="linkedinGrid"></div>
+    </section>
+
+    <!-- SOCIAL MEDIA SECTION -->
     <section class="social-section" id="socialSection">
         <h2>📱 تواصل معنا</h2>
         <p>تابعنا على منصات التواصل الاجتماعي للمزيد من النصائح والتحديثات</p>
@@ -225,7 +346,7 @@
             <a href="https://www.instagram.com/career__cv/" target="_blank" class="social-card instagram">
                 <i class="fab fa-instagram"></i>
                 <span>Instagram</span>
-                <small>صفحة CAREER CV</small>
+                <small>@career__cv</small>
             </a>
             <a href="https://www.linkedin.com/company/career-cv/?viewAsMember=true" target="_blank" class="social-card linkedin">
                 <i class="fab fa-linkedin"></i>
@@ -241,13 +362,21 @@
     </section>
 
     <footer>
-       
+        <div class="footer-social">
+            <a href="https://www.facebook.com/profile.php?id=61571549710838" target="_blank" title="Facebook"><i class="fab fa-facebook-f"></i></a>
+            <a href="https://www.instagram.com/career__cv/" target="_blank" title="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.linkedin.com/company/career-cv/?viewAsMember=true" target="_blank" title="LinkedIn Company"><i class="fab fa-linkedin-in"></i></a>
+            <a href="https://www.linkedin.com/in/eng-mohammed-elshemy-39070b315/" target="_blank" title="LinkedIn Owner"><i class="fab fa-linkedin-in"></i></a>
+        </div>
         <p>© 2025 <span style="color:#d4af37;">CAREER CV</span> - جميع الحقوق محفوظة</p>
         <p class="owner">تصميم وتطوير: Eng. Mohammed ElShemy</p>
     </footer>
 
     <script>
-        const jobs = [
+        // ===== DATA =====
+        
+        // ATS Jobs (existing)
+        const atsJobs = [
             { title: "أخصائي ضمان الجودة ومراقبة الجودة", fileId: "1xd5t0JNGYVxC5qxMtvHoUYlt2_4K4d0I" },
             { title: "Business Development", fileId: "1G5Lky9kbGEulf1UeOjBoZi-Gj3VCCJhc" },
             { title: "Industrial Projects & Nuclear Power", fileId: "16MMQqFwEicQ80pdQP8UJ6BSqV3_qs8zu" },
@@ -282,18 +411,71 @@
             { title: "Team Leader", fileId: "1ex-LVsZ7i4s8cyPw4BxjWhuRyvtkusLJ" },
         ];
 
+        // Europass Examples (DUMMY - replace with real links)
+        const europassJobs = [
+            { title: "Software Engineer - Europass", fileId: "EURO_PASS_1" },
+            { title: "Data Analyst - Europass", fileId: "EURO_PASS_2" },
+            { title: "Project Manager - Europass", fileId: "EURO_PASS_3" },
+            { title: "Marketing Specialist - Europass", fileId: "EURO_PASS_4" },
+            { title: "HR Manager - Europass", fileId: "EURO_PASS_5" },
+            { title: "Financial Analyst - Europass", fileId: "EURO_PASS_6" },
+            { title: "Civil Engineer - Europass", fileId: "EURO_PASS_7" },
+            { title: "Graphic Designer - Europass", fileId: "EURO_PASS_8" },
+        ];
+
+        // Canadian Examples (DUMMY - replace with real links)
+        const canadianJobs = [
+            { title: "IT Consultant - Canadian Format", fileId: "CANADIAN_1" },
+            { title: "Sales Representative - Canadian Format", fileId: "CANADIAN_2" },
+            { title: "Operations Manager - Canadian Format", fileId: "CANADIAN_3" },
+            { title: "Accountant - Canadian Format", fileId: "CANADIAN_4" },
+            { title: "Nurse - Canadian Format", fileId: "CANADIAN_5" },
+            { title: "Teacher - Canadian Format", fileId: "CANADIAN_6" },
+            { title: "Engineer - Canadian Format", fileId: "CANADIAN_7" },
+            { title: "Business Analyst - Canadian Format", fileId: "CANADIAN_8" },
+        ];
+
+        // QR Code Examples (DUMMY - replace with real links)
+        const qrJobs = [
+            { title: "Digital Marketing - QR Resume", fileId: "QR_1" },
+            { title: "Web Developer - QR Resume", fileId: "QR_2" },
+            { title: "Content Creator - QR Resume", fileId: "QR_3" },
+            { title: "UX Designer - QR Resume", fileId: "QR_4" },
+            { title: "Social Media Manager - QR Resume", fileId: "QR_5" },
+            { title: "Photographer - QR Resume", fileId: "QR_6" },
+            { title: "Videographer - QR Resume", fileId: "QR_7" },
+            { title: "Brand Manager - QR Resume", fileId: "QR_8" },
+        ];
+
+        // LinkedIn Examples (DUMMY - replace with real links)
+        const linkedinJobs = [
+            { title: "LinkedIn Profile - Executive Level", fileId: "LINKEDIN_1" },
+            { title: "LinkedIn Profile - Manager Level", fileId: "LINKEDIN_2" },
+            { title: "LinkedIn Profile - Specialist Level", fileId: "LINKEDIN_3" },
+            { title: "LinkedIn Profile - Fresh Graduate", fileId: "LINKEDIN_4" },
+            { title: "LinkedIn Profile - Freelancer", fileId: "LINKEDIN_5" },
+            { title: "LinkedIn Profile - Consultant", fileId: "LINKEDIN_6" },
+            { title: "LinkedIn Profile - Entrepreneur", fileId: "LINKEDIN_7" },
+            { title: "LinkedIn Profile - Technical", fileId: "LINKEDIN_8" },
+        ];
+
         const jobIcons = ["💼","🏗️","👔","☕","🎓","👨‍🍳","🏛️","🏢","📊","🔧","💻","📱","🚗","✈️","🏥","⚖️","🎬","📰","🌾","🔬","🎨","🎵","📷","✍️","🧮","🗺️","🔌","🛢️","🏭","🚢","🚛","🏪"];
+        const europassIcons = ["🇪🇺","🇫🇷","🇩🇪","🇮🇹","🇪🇸","🇳🇱","🇧🇪","🇦🇹"];
+        const canadianIcons = ["🇨🇦","🍁","🏔️","❄️","🦌","🌲","🏒","🥞"];
+        const qrIcons = ["📱","📲","🔳","📶","💳","🆔","🔗","📡"];
+        const linkedinIcons = ["💼","👔","🤝","📈","🎯","🏆","⭐","🔷"];
 
         function getDirectLink(fileId) { return `https://drive.google.com/uc?export=download&id=${fileId}`; }
         function getViewLink(fileId) { return `https://drive.google.com/file/d/${fileId}/preview`; }
 
-        function renderJobs(filter = "") {
-            const grid = document.getElementById('jobsGrid');
-            const filtered = jobs.filter(j => j.title.toLowerCase().includes(filter.toLowerCase()));
-            if (filtered.length === 0) { grid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة للبحث</div>'; return; }
-            grid.innerHTML = filtered.map((job, i) => `
+        function renderGrid(jobs, gridId, icons, badgeClass, badgeText) {
+            const grid = document.getElementById(gridId);
+            if (!grid) return;
+            
+            grid.innerHTML = jobs.map((job, i) => `
                 <div class="job-card">
-                    <div class="job-icon">${jobIcons[i % jobIcons.length]}</div>
+                    <span class="badge ${badgeClass}">${badgeText}</span>
+                    <div class="job-icon">${icons[i % icons.length]}</div>
                     <div class="job-title">${job.title}</div>
                     <div class="job-meta"><span>📄</span><span>PDF - جاهز للتحميل</span></div>
                     <div class="job-actions">
@@ -302,30 +484,114 @@
                     </div>
                 </div>
             `).join('');
-            document.getElementById('jobsCount').textContent = jobs.length + "+";
+        }
+
+        function filterSection(section) {
+            const searchId = 'search' + section.charAt(0).toUpperCase() + section.slice(1);
+            const input = document.getElementById(searchId);
+            if (!input) return;
+            
+            const val = input.value.toLowerCase();
+            let jobs, gridId, icons, badgeClass, badgeText;
+            
+            switch(section) {
+                case 'ats':
+                    jobs = atsJobs; gridId = 'atsGrid'; icons = jobIcons;
+                    badgeClass = 'badge-ats'; badgeText = 'ATS';
+                    break;
+                case 'europass':
+                    jobs = europassJobs; gridId = 'europassGrid'; icons = europassIcons;
+                    badgeClass = 'badge-europass'; badgeText = 'Europass';
+                    break;
+                case 'canadian':
+                    jobs = canadianJobs; gridId = 'canadianGrid'; icons = canadianIcons;
+                    badgeClass = 'badge-canadian'; badgeText = 'Canadian';
+                    break;
+                case 'qr':
+                    jobs = qrJobs; gridId = 'qrGrid'; icons = qrIcons;
+                    badgeClass = 'badge-qr'; badgeText = 'QR Code';
+                    break;
+                case 'linkedin':
+                    jobs = linkedinJobs; gridId = 'linkedinGrid'; icons = linkedinIcons;
+                    badgeClass = 'badge-linkedin'; badgeText = 'LinkedIn';
+                    break;
+            }
+            
+            const filtered = jobs.filter(j => j.title.toLowerCase().includes(val));
+            const grid = document.getElementById(gridId);
+            
+            if (filtered.length === 0) {
+                grid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة للبحث</div>';
+                return;
+            }
+            
+            grid.innerHTML = filtered.map((job, i) => `
+                <div class="job-card">
+                    <span class="badge ${badgeClass}">${badgeText}</span>
+                    <div class="job-icon">${icons[i % icons.length]}</div>
+                    <div class="job-title">${job.title}</div>
+                    <div class="job-meta"><span>📄</span><span>PDF - جاهز للتحميل</span></div>
+                    <div class="job-actions">
+                        <a href="${getViewLink(job.fileId)}" target="_blank" class="btn-view">👁️ معاينة</a>
+                        <a href="${getDirectLink(job.fileId)}" class="btn-download">⬇️ تحميل</a>
+                    </div>
+                </div>
+            `).join('');
         }
 
         function showHome() {
             document.getElementById('homeSection').style.display = 'block';
-            document.getElementById('atsSection').style.display = 'none';
             document.getElementById('socialSection').style.display = 'block';
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
             document.querySelectorAll('.nav-links a')[0].classList.add('active');
-            document.querySelectorAll('.nav-links a')[1].classList.remove('active');
             window.scrollTo({ top: 0, behavior: 'smooth' });
         }
 
-        function showATS() {
+        function showSection(name) {
             document.getElementById('homeSection').style.display = 'none';
-            document.getElementById('atsSection').style.display = 'block';
             document.getElementById('socialSection').style.display = 'none';
-            document.querySelectorAll('.nav-links a')[0].classList.remove('active');
-            document.querySelectorAll('.nav-links a')[1].classList.add('active');
+            document.querySelectorAll('.section').forEach(s => s.style.display = 'none');
+            
+            const sectionMap = {
+                'ats': 'atsSection',
+                'europass': 'europassSection',
+                'canadian': 'canadianSection',
+                'qr': 'qrSection',
+                'linkedin': 'linkedinSection'
+            };
+            
+            const target = document.getElementById(sectionMap[name]);
+            if (target) target.style.display = 'block';
+            
+            document.querySelectorAll('.nav-links a').forEach(a => a.classList.remove('active'));
+            const navIndex = ['ats','europass','canadian','qr','linkedin'].indexOf(name) + 1;
+            if (navIndex >= 0) document.querySelectorAll('.nav-links a')[navIndex].classList.add('active');
+            
             window.scrollTo({ top: 0, behavior: 'smooth' });
-            renderJobs();
+            
+            // Render if empty
+            if (name === 'europass' && !document.getElementById('europassGrid').innerHTML) {
+                renderGrid(europassJobs, 'europassGrid', europassIcons, 'badge-europass', 'Europass');
+            }
+            if (name === 'canadian' && !document.getElementById('canadianGrid').innerHTML) {
+                renderGrid(canadianJobs, 'canadianGrid', canadianIcons, 'badge-canadian', 'Canadian');
+            }
+            if (name === 'qr' && !document.getElementById('qrGrid').innerHTML) {
+                renderGrid(qrJobs, 'qrGrid', qrIcons, 'badge-qr', 'QR Code');
+            }
+            if (name === 'linkedin' && !document.getElementById('linkedinGrid').innerHTML) {
+                renderGrid(linkedinJobs, 'linkedinGrid', linkedinIcons, 'badge-linkedin', 'LinkedIn');
+            }
+            if (name === 'ats' && !document.getElementById('atsGrid').innerHTML) {
+                renderGrid(atsJobs, 'atsGrid', jobIcons, 'badge-ats', 'ATS');
+            }
         }
 
-        function filterJobs() { renderJobs(document.getElementById('searchInput').value); }
-        document.addEventListener('DOMContentLoaded', () => renderJobs());
+        document.addEventListener('DOMContentLoaded', () => {
+            renderGrid(atsJobs, 'atsGrid', jobIcons, 'badge-ats', 'ATS');
+            document.getElementById('jobsCount').textContent = atsJobs.length + "+";
+        });
     </script>
 </body>
 </html>
