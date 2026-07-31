@@ -285,14 +285,15 @@ html_final = '''<!DOCTYPE html>
     will-change: transform;
 }
 .feedback-slide {
-    min-width: calc(33.333% - 10px);
-    flex-shrink: 0;
+    flex: 0 0 calc(33.333% - 10px);
+    min-width: 0;
     border-radius: 15px;
     overflow: hidden;
     border: 2px solid rgba(212, 175, 55, 0.15);
     background: rgba(255,255,255,0.03);
     transition: all 0.3s ease;
     cursor: pointer;
+    position: relative;
 }
 .feedback-slide:hover {
     transform: translateY(-5px);
@@ -305,13 +306,22 @@ html_final = '''<!DOCTYPE html>
     object-fit: cover;
     display: block;
     border-radius: 12px;
+    background: rgba(255,255,255,0.08);
+}
+/* لو الصورة فشلت، نخليها تظهر placeholder بدل ما تختفي */
+.feedback-slide img[alt] {
+    color: rgba(255,255,255,0.3);
+    font-size: 0.8rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 @media (max-width: 900px) {
-    .feedback-slide { min-width: calc(50% - 8px); }
+    .feedback-slide { flex: 0 0 calc(50% - 8px); }
     .feedback-slide img { height: 200px; }
 }
 @media (max-width: 560px) {
-    .feedback-slide { min-width: 100%; }
+    .feedback-slide { flex: 0 0 100%; }
     .feedback-slide img { height: 280px; }
 }
     </style>
@@ -778,10 +788,10 @@ function getViewLink(fileId) {
     const track = document.getElementById('feedbackTrack');
     if (!track) return;
     
-    const TOTAL_IMAGES = 99;   // عدد الصور اللي عندك (1.jpeg لـ 99.jpeg)
-    const IMAGE_PATH = '';     // لو الصور في مجلد غير المجلد الرئيسي غيره (مثلاً: 'feedback/')
+    const TOTAL_IMAGES = 99;
+    const IMAGE_PATH = ''; // لو الصور في مجلد فرعي غيره مثلاً: 'images/'
     
-    // توليد الصور تلقائياً
+    // توليد الصور
     let html = '';
     for (let i = 1; i <= TOTAL_IMAGES; i++) {
         html += `
@@ -789,16 +799,16 @@ function getViewLink(fileId) {
                 <img src="${IMAGE_PATH}${i}.jpeg" 
                      alt="Feedback ${i}" 
                      loading="lazy"
-                     onerror="this.parentElement.style.display='none'">
+                     onerror="this.style.opacity='0.2'; this.style.background='rgba(255,255,255,0.1)';">
             </div>
         `;
     }
     track.innerHTML = html;
     
-    const slides = track.querySelectorAll('.feedback-slide');
-    if (slides.length === 0) return;
-    
+    let slides = [];
     let currentIndex = 0;
+    let slideWidth = 0;
+    let intervalId = null;
     
     function getVisibleCount() {
         if (window.innerWidth <= 560) return 1;
@@ -812,26 +822,52 @@ function getViewLink(fileId) {
     }
     
     function updateCarousel() {
-        const slideWidth = slides[0].offsetWidth + 15; // + gap
+        if (!slides.length || slideWidth <= 0) return;
         track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
     }
     
-    // التبديل التلقائي كل 2 ثانية
-    setInterval(() => {
+    function nextSlide() {
         const maxIndex = getMaxIndex();
+        if (maxIndex === 0) return; // لو صورة واحدة بس متاحة متتحركش
         currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
         updateCarousel();
-    }, 2000);
+    }
     
-    // تحديث عند تغيير حجم الشاشة
-    window.addEventListener('resize', () => {
-        const maxIndex = getMaxIndex();
-        if (currentIndex > maxIndex) currentIndex = 0;
+    function initCarousel() {
+        slides = Array.from(track.querySelectorAll('.feedback-slide'));
+        if (!slides.length) return;
+        
+        // نحسب العرض بعد ما كل الصور والـ CSS يتحملوا تماماً
+        const firstSlide = slides[0];
+        slideWidth = firstSlide.offsetWidth + 15; // 15 = gap
+        
+        // نمسح أي interval قديم
+        if (intervalId) clearInterval(intervalId);
+        
+        // نرجع للبداية ونحدث
+        currentIndex = 0;
         updateCarousel();
-    });
+        
+        // نبدأ التبديل التلقائي كل 2.5 ثانية
+        intervalId = setInterval(nextSlide, 2500);
+    }
     
-    // التهيئة الأولى
-    setTimeout(updateCarousel, 100);
+    // ⭐ الحل السحري: نستنى كل الصور والـ fonts والـ styles تتحمل تماماً
+    if (document.readyState === 'complete') {
+        setTimeout(initCarousel, 500);
+    } else {
+        window.addEventListener('load', () => setTimeout(initCarousel, 500));
+    }
+    
+    // نعيد الحساب لما الشاشة تتغير حجمها
+    let resizeTimer;
+    window.addEventListener('resize', () => {
+        clearTimeout(resizeTimer);
+        resizeTimer = setTimeout(() => {
+            currentIndex = 0;
+            initCarousel();
+        }, 300);
+    });
 })();
     </script>
 </body>
