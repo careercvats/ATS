@@ -21,6 +21,35 @@
     transition: transform 0.4s ease;
 }
 nav.nav-hidden { transform: translateY(-100%); }
+        .hamburger {
+    display: none;
+    flex-direction: column;
+    gap: 5px;
+    background: none;
+    border: none;
+    cursor: pointer;
+    padding: 5px;
+    z-index: 101;
+}
+.hamburger span {
+    display: block;
+    width: 28px;
+    height: 3px;
+    background: #d4af37;
+    border-radius: 2px;
+    transition: all 0.3s ease;
+}
+.close-btn {
+    display: none;
+    position: absolute;
+    top: 20px;
+    left: 20px;
+    background: none;
+    border: none;
+    color: #d4af37;
+    font-size: 1.5rem;
+    cursor: pointer;
+}
         .logo { display: flex; align-items: center; gap: 12px; }
         .logo img { width: 50px; height: 50px; border-radius: 50%; object-fit: cover; border: 2px solid #d4af37; }
         .logo-text { font-size: 1.5rem; font-weight: 900; color: #d4af37; letter-spacing: 2px; }
@@ -187,12 +216,42 @@ nav.nav-hidden { transform: translateY(-100%); }
         .badge-linkedin { background: rgba(10, 102, 194, 0.2); color: #87ceeb; border: 1px solid #87ceeb; }
         
         @media (max-width: 768px) {
-            .hero h1 { font-size: 2.2rem; } nav { padding: 15px 20px; }
-            .nav-links { gap: 10px; } .nav-links a { padding: 6px 12px; font-size: 0.8rem; }
-            .social-grid { grid-template-columns: 1fr 1fr; }
-            .category-tabs { gap: 10px; }
-            .cat-tab { min-width: 120px; padding: 15px; }
-        }
+    .hero h1 { font-size: 2.2rem; } 
+    nav { padding: 15px 20px; }
+    .hamburger { display: flex; }
+    .nav-links {
+        position: fixed;
+        top: 0;
+        right: 0;
+        width: 260px;
+        height: 100vh;
+        background: rgba(13, 59, 46, 0.98);
+        backdrop-filter: blur(10px);
+        flex-direction: column;
+        justify-content: flex-start;
+        align-items: stretch;
+        padding: 80px 20px 20px;
+        gap: 8px;
+        transform: translateX(100%);
+        transition: transform 0.3s ease;
+        z-index: 99;
+        border-left: 1px solid rgba(212, 175, 55, 0.3);
+    }
+    .nav-links.open {
+        transform: translateX(0);
+    }
+    .nav-links a {
+        width: 100%;
+        text-align: right;
+        padding: 14px 20px;
+        border-radius: 12px;
+        font-size: 1rem;
+    }
+    .close-btn { display: block; }
+    .social-grid { grid-template-columns: 1fr 1fr; }
+    .category-tabs { gap: 10px; }
+    .cat-tab { min-width: 120px; padding: 15px; }
+}
         @media (max-width: 480px) {
             .social-grid { grid-template-columns: 1fr; }
         }
@@ -200,19 +259,25 @@ nav.nav-hidden { transform: translateY(-100%); }
 </head>
 <body>
     <nav>
-        <div class="logo">
-            <img src="sama.jpg" alt="CAREER CV Logo" id="navLogo">
-            <span class="logo-text">CAREER CV</span>
-        </div>
-        <div class="nav-links">
-            <a href="#" class="active" onclick="showHome(); return false;">الرئيسية</a>
-            <a href="#" onclick="showSection('ats'); return false;">ATS</a>
-            <a href="#" onclick="showSection('europass'); return false;">Europass</a>
-            <a href="#" onclick="showSection('canadian'); return false;">Canadian</a>
-            <a href="#" onclick="showSection('qr'); return false;">QR</a>
-            <a href="#" onclick="showSection('linkedin'); return false;">LinkedIn</a>
-        </div>
-    </nav>
+    <div class="logo">
+        <img src="sama.jpg" alt="CAREER CV Logo" id="navLogo">
+        <span class="logo-text">CAREER CV</span>
+    </div>
+    <div class="nav-links" id="sideMenu">
+        <button class="close-btn" onclick="closeMenu()">✕</button>
+        <a href="#" class="active" onclick="showHome(); closeMenu(); return false;">الرئيسية</a>
+        <a href="#" onclick="showSection('ats'); closeMenu(); return false;">ATS</a>
+        <a href="#" onclick="showSection('europass'); closeMenu(); return false;">Europass</a>
+        <a href="#" onclick="showSection('canadian'); closeMenu(); return false;">Canadian</a>
+        <a href="#" onclick="showSection('qr'); closeMenu(); return false;">QR</a>
+        <a href="#" onclick="showSection('linkedin'); closeMenu(); return false;">LinkedIn</a>
+    </div>
+    <button class="hamburger" onclick="toggleMenu()" aria-label="القائمة">
+        <span></span>
+        <span></span>
+        <span></span>
+    </button>
+</nav>
 
     <!-- HOME SECTION -->
     <section id="homeSection">
