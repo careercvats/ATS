@@ -565,7 +565,7 @@ function getViewLink(fileId) {
                     <span class="badge ${badgeClass}">${badgeText}</span>
                     <div class="job-icon">${icons[i % icons.length]}</div>
                     <div class="job-title">${job.title}</div>
-                    <div class="job-meta"><span>📄</span><span>PDF - جاهز للتحميل</span></div>
+                    <div class="job-meta"><span>${job.fileId.startsWith('http') ? '🔗' : '📄'}</span><span>${job.fileId.startsWith('http') ? 'رابط مباشر' : 'PDF - جاهز للتحميل'}</span></div>
                     <div class="job-actions">
                         <a href="${getViewLink(job.fileId)}" target="_blank" class="btn-view">👁️ معاينة</a>
                         <a href="${getDirectLink(job.fileId)}" class="btn-download">⬇️ تحميل</a>
@@ -618,7 +618,7 @@ function getViewLink(fileId) {
                     <span class="badge ${badgeClass}">${badgeText}</span>
                     <div class="job-icon">${icons[i % icons.length]}</div>
                     <div class="job-title">${job.title}</div>
-                    <div class="job-meta"><span>${fileId.startsWith('http') ? '🔗' : '📄'}</span><span>${fileId.startsWith('http') ? 'رابط مباشر' : 'PDF - جاهز للتحميل'}</span></div>
+                    <div class="job-meta"><span>${job.fileId.startsWith('http') ? '🔗' : '📄'}</span><span>${job.fileId.startsWith('http') ? 'رابط مباشر' : 'PDF - جاهز للتحميل'}</span></div>
                     <div class="job-actions">
                         <a href="${getViewLink(job.fileId)}" target="_blank" class="btn-view">👁️ معاينة</a>
                         <a href="${getDirectLink(job.fileId)}" class="btn-download">⬇️ تحميل</a>
