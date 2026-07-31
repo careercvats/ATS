@@ -368,6 +368,34 @@ html_final = '''<!DOCTYPE html>
     .fb-arrow { width: 34px; height: 34px; font-size: 1rem; }
     .feedback-slide img { max-height: 250px; }
 }
+        .search-box { position: relative; }
+.search-clear {
+    position: absolute;
+    left: 50px;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(212,175,55,0.2);
+    border: none;
+    color: #d4af37;
+    width: 28px;
+    height: 28px;
+    border-radius: 50%;
+    cursor: pointer;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    font-size: 0.85rem;
+    transition: all 0.2s;
+}
+.search-clear.visible { display: flex; }
+.search-clear:hover { background: #d4af37; color: #0d3b2e; }
+.results-count {
+    text-align: center;
+    color: rgba(255,255,255,0.7);
+    margin-bottom: 20px;
+    font-size: 0.95rem;
+    min-height: 24px;
+}
     </style>
 </head>
 <body>
@@ -399,7 +427,7 @@ html_final = '''<!DOCTYPE html>
             <h1>CAREER CV</h1>
             <p>نحن متخصصون في إعداد السير الذاتية الاحترافية المتوافقة مع أنظمة التتبع الآلي (ATS) لمساعدتك في الحصول على وظيفة أحلامك</p>
             <div class="stats-bar">
-                <div class="stat-item"><div class="stat-number" id="jobsCount">32+</div><div class="stat-label">نموذج وظيفي</div></div>
+                <div class="stat-item"><div class="stat-number" id="jobsCount">99+</div><div class="stat-label">نموذج وظيفي</div></div>
                 <div class="stat-item"><div class="stat-number">97%</div><div class="stat-label">متوافق مع ATS</div></div>
                 <div class="stat-item"><div class="stat-number">999+</div><div class="stat-label">عميل سعيد</div></div>
             </div>
@@ -460,10 +488,12 @@ html_final = '''<!DOCTYPE html>
             <h2>📋 نماذج ATS الوظيفية</h2>
             <p>اختر النموذج المناسب لوظيفتك وحمّله مباشرة</p>
         </div>
-        <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchATS" placeholder="ابحث في نماذج ATS..." oninput="filterSection('ats')">
-        </div>
+       <div class="search-box">
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchATS" placeholder="ابحث في نماذج ATS..." oninput="filterSection('ats')" autocomplete="off">
+    <button class="search-clear" onclick="clearSearch('ats')" type="button">✕</button>
+</div>
+<div class="results-count" id="countATS"></div>
         <div class="jobs-grid" id="atsGrid"></div>
     </section>
 
@@ -475,9 +505,11 @@ html_final = '''<!DOCTYPE html>
             <p>السيرة الذاتية الموحدة المعتمدة من الاتحاد الأوروبي</p>
         </div>
         <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchEuropass" placeholder="ابحث في نماذج Europass..." oninput="filterSection('europass')">
-        </div>
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchEuropass" placeholder="ابحث في نماذج Europass..." oninput="filterSection('europass')" autocomplete="off">
+    <button class="search-clear" onclick="clearSearch('europass')" type="button">✕</button>
+</div>
+<div class="results-count" id="countEuropass"></div>
         <div class="jobs-grid" id="europassGrid"></div>
     </section>
 
@@ -489,9 +521,11 @@ html_final = '''<!DOCTYPE html>
             <p>تنسيق السيرة الذاتية الكندي المعتمد</p>
         </div>
         <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchCanadian" placeholder="ابحث في نماذج Canadian..." oninput="filterSection('canadian')">
-        </div>
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchCanadian" placeholder="ابحث في نماذج Canadian..." oninput="filterSection('canadian')" autocomplete="off">
+    <button class="search-clear" onclick="clearSearch('canadian')" type="button">✕</button>
+</div>
+<div class="results-count" id="countCanadian"></div>
         <div class="jobs-grid" id="canadianGrid"></div>
     </section>
 
@@ -503,9 +537,11 @@ html_final = '''<!DOCTYPE html>
             <p>سير ذاتية رقمية بكود QR للمسح السريع</p>
         </div>
         <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchQR" placeholder="ابحث في نماذج QR..." oninput="filterSection('qr')">
-        </div>
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchQR" placeholder="ابحث في نماذج QR..." oninput="filterSection('qr')" autocomplete="off">
+    <button class="search-clear" onclick="clearSearch('qr')" type="button">✕</button>
+</div>
+<div class="results-count" id="countQR"></div>
         <div class="jobs-grid" id="qrGrid"></div>
     </section>
 
@@ -517,9 +553,11 @@ html_final = '''<!DOCTYPE html>
             <p>تحسين ونماذج ملف LinkedIn الاحترافي</p>
         </div>
         <div class="search-box">
-            <span class="search-icon">🔍</span>
-            <input type="text" id="searchLinkedIn" placeholder="ابحث في نماذج LinkedIn..." oninput="filterSection('linkedin')">
-        </div>
+    <span class="search-icon">🔍</span>
+    <input type="text" id="searchLinkedin" placeholder="ابحث في نماذج LinkedIn..." oninput="filterSection('linkedin')" autocomplete="off">
+    <button class="search-clear" onclick="clearSearch('linkedin')" type="button">✕</button>
+</div>
+<div class="results-count" id="countLinkedin"></div>
         <div class="jobs-grid" id="linkedinGrid"></div>
     </section>
 
@@ -697,57 +735,77 @@ function getViewLink(fileId) {
         }
 
         function filterSection(section) {
-            const searchId = 'search' + section.charAt(0).toUpperCase() + section.slice(1);
-            const input = document.getElementById(searchId);
-            if (!input) return;
-            
-            const val = input.value.toLowerCase();
-            let jobs, gridId, icons, badgeClass, badgeText;
-            
-            switch(section) {
-                case 'ats':
-                    jobs = atsJobs; gridId = 'atsGrid'; icons = jobIcons;
-                    badgeClass = 'badge-ats'; badgeText = 'ATS';
-                    break;
-                case 'europass':
-                    jobs = europassJobs; gridId = 'europassGrid'; icons = europassIcons;
-                    badgeClass = 'badge-europass'; badgeText = 'Europass';
-                    break;
-                case 'canadian':
-                    jobs = canadianJobs; gridId = 'canadianGrid'; icons = canadianIcons;
-                    badgeClass = 'badge-canadian'; badgeText = 'Canadian';
-                    break;
-                case 'qr':
-                    jobs = qrJobs; gridId = 'qrGrid'; icons = qrIcons;
-                    badgeClass = 'badge-qr'; badgeText = 'QR Code';
-                    break;
-                case 'linkedin':
-                    jobs = linkedinJobs; gridId = 'linkedinGrid'; icons = linkedinIcons;
-                    badgeClass = 'badge-linkedin'; badgeText = 'LinkedIn';
-                    break;
-            }
-            
-            const filtered = jobs.filter(j => j.title.toLowerCase().includes(val));
-            const grid = document.getElementById(gridId);
-            
-            if (filtered.length === 0) {
-                grid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة للبحث</div>';
-                return;
-            }
-            
-            grid.innerHTML = filtered.map((job, i) => `
-                <div class="job-card">
-                    <span class="badge ${badgeClass}">${badgeText}</span>
-                    <div class="job-icon">${icons[i % icons.length]}</div>
-                    <div class="job-title">${job.title}</div>
-                    <div class="job-meta"><span>${job.fileId.startsWith('http') ? '🔗' : '📄'}</span><span>${job.fileId.startsWith('http') ? 'رابط مباشر' : 'PDF - جاهز للتحميل'}</span></div>
-                    <div class="job-actions">
-                        <a href="${getViewLink(job.fileId)}" target="_blank" class="btn-view">👁️ معاينة</a>
-                        <a href="${getDirectLink(job.fileId)}" class="btn-download">⬇️ تحميل</a>
-                    </div>
-                </div>
-            `).join('');
-        }
+    const searchId = 'search' + section.charAt(0).toUpperCase() + section.slice(1);
+    const input = document.getElementById(searchId);
+    if (!input) return;
+    
+    // زرار المسح
+    const clearBtn = input.parentElement.querySelector('.search-clear');
+    if (clearBtn) clearBtn.classList.toggle('visible', input.value.length > 0);
+    
+    const val = input.value.toLowerCase().trim();
+    let jobs, gridId, icons, badgeClass, badgeText, countId;
+    
+    switch(section) {
+        case 'ats':
+            jobs = atsJobs; gridId = 'atsGrid'; icons = jobIcons;
+            badgeClass = 'badge-ats'; badgeText = 'ATS'; countId = 'countATS';
+            break;
+        case 'europass':
+            jobs = europassJobs; gridId = 'europassGrid'; icons = europassIcons;
+            badgeClass = 'badge-europass'; badgeText = 'Europass'; countId = 'countEuropass';
+            break;
+        case 'canadian':
+            jobs = canadianJobs; gridId = 'canadianGrid'; icons = canadianIcons;
+            badgeClass = 'badge-canadian'; badgeText = 'Canadian'; countId = 'countCanadian';
+            break;
+        case 'qr':
+            jobs = qrJobs; gridId = 'qrGrid'; icons = qrIcons;
+            badgeClass = 'badge-qr'; badgeText = 'QR Code'; countId = 'countQR';
+            break;
+        case 'linkedin':
+            jobs = linkedinJobs; gridId = 'linkedinGrid'; icons = linkedinIcons;
+            badgeClass = 'badge-linkedin'; badgeText = 'LinkedIn'; countId = 'countLinkedin';
+            break;
+    }
+    
+    const filtered = jobs.filter(j => j.title.toLowerCase().includes(val));
+    const grid = document.getElementById(gridId);
+    const countEl = document.getElementById(countId);
+    
+    // عداد النتائج
+    if (countEl) {
+        countEl.textContent = val === '' ? '' : `تم العثور على ${filtered.length} نتيجة`;
+    }
+    
+    if (filtered.length === 0) {
+        grid.innerHTML = '<div class="no-results">🔍 لا توجد نتائج مطابقة للبحث</div>';
+        return;
+    }
+    
+    grid.innerHTML = filtered.map((job, i) => `
+        <div class="job-card">
+            <span class="badge ${badgeClass}">${badgeText}</span>
+            <div class="job-icon">${icons[i % icons.length]}</div>
+            <div class="job-title">${job.title}</div>
+            <div class="job-meta"><span>${job.fileId.startsWith('http') ? '🔗' : '📄'}</span><span>${job.fileId.startsWith('http') ? 'رابط مباشر' : 'PDF - جاهز للتحميل'}</span></div>
+            <div class="job-actions">
+                <a href="${getViewLink(job.fileId)}" target="_blank" class="btn-view">👁️ معاينة</a>
+                <a href="${getDirectLink(job.fileId)}" class="btn-download">⬇️ تحميل</a>
+            </div>
+        </div>
+    `).join('');
+}
+
+function clearSearch(section) {
+    const searchId = 'search' + section.charAt(0).toUpperCase() + section.slice(1);
+    const input = document.getElementById(searchId);
+    if (input) {
+        input.value = '';
+        input.focus();
+        filterSection(section);
+    }
+}
 
         function showHome() {
             document.getElementById('homeSection').style.display = 'block';
@@ -800,7 +858,7 @@ function getViewLink(fileId) {
 
         document.addEventListener('DOMContentLoaded', () => {
             renderGrid(atsJobs, 'atsGrid', jobIcons, 'badge-ats', 'ATS');
-            document.getElementById('jobsCount').textContent = atsJobs.length + "+";
+            document.getElementById('jobsCount').textContent = "99+";
             
             // Hide navbar on scroll down, show on scroll up
             let lastScroll = 0;
