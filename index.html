@@ -499,9 +499,9 @@ html_final = '''<!DOCTYPE html>
 
         // QR Code Examples (DUMMY - replace with real links)
         const qrJobs = [
-            { title: "Media & Corporate Communications Executive", fileId: "linktr.ee/Tago_maa76" },
-            { title: "Senior Civil Engineer", fileId: "linktr.ee/eng.moh._osheba" },
-            { title: "IT System & Network Administrator", fileId: "linktr.ee/ahmed_essamabdallah90" },
+            { title: "Media & Corporate Communications Executive", fileId: "https://linktr.ee/Tago_maa76" },
+            { title: "Senior Civil Engineer", fileId: "https://linktr.ee/eng.moh._osheba" },
+            { title: "IT System & Network Administrator", fileId: "https://linktr.ee/ahmed_essamabdallah90" },
             { title: "Senior Physiotherapist (Sports & Neurological Rehabilitation)", fileId: "https://linktr.ee/dr.zien.ahmed" },
             { title: "Automotive Paint Technician", fileId: "https://linktr.ee/abdgoa_a2.26" },
             { title: "Accountant", fileId: "https://linktr.ee/Muhammadshalaby1" },
@@ -534,8 +534,14 @@ html_final = '''<!DOCTYPE html>
         const qrIcons = ["📱","📲","🔳","📶","💳","🆔","🔗","📡"];
         const linkedinIcons = ["💼","👔","🤝","📈","🎯","🏆","⭐","🔷"];
 
-        function getDirectLink(fileId) { return `https://drive.google.com/uc?export=download&id=${fileId}`; }
-        function getViewLink(fileId) { return `https://drive.google.com/file/d/${fileId}/preview`; }
+        function getDirectLink(fileId) { 
+    if (fileId.startsWith('http')) return fileId;
+    return `https://drive.google.com/uc?export=download&id=${fileId}`; 
+}
+function getViewLink(fileId) { 
+    if (fileId.startsWith('http')) return fileId;
+    return `https://drive.google.com/file/d/${fileId}/preview`; 
+}
 
         // ===== MENU FUNCTIONS =====
         function toggleMenu() {
@@ -612,7 +618,7 @@ html_final = '''<!DOCTYPE html>
                     <span class="badge ${badgeClass}">${badgeText}</span>
                     <div class="job-icon">${icons[i % icons.length]}</div>
                     <div class="job-title">${job.title}</div>
-                    <div class="job-meta"><span>📄</span><span>PDF - جاهز للتحميل</span></div>
+                    <div class="job-meta"><span>${fileId.startsWith('http') ? '🔗' : '📄'}</span><span>${fileId.startsWith('http') ? 'رابط مباشر' : 'PDF - جاهز للتحميل'}</span></div>
                     <div class="job-actions">
                         <a href="${getViewLink(job.fileId)}" target="_blank" class="btn-view">👁️ معاينة</a>
                         <a href="${getDirectLink(job.fileId)}" class="btn-download">⬇️ تحميل</a>
