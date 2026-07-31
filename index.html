@@ -256,6 +256,64 @@ html_final = '''<!DOCTYPE html>
         @media (max-width: 480px) {
             .social-grid { grid-template-columns: 1fr; }
         }
+        /* ===== FEEDBACK CAROUSEL ===== */
+.feedback-section {
+    max-width: 1100px;
+    margin: 50px auto 30px;
+    padding: 0 20px;
+}
+.feedback-section h3 {
+    color: #d4af37;
+    font-size: 1.4rem;
+    margin-bottom: 20px;
+    text-align: center;
+    text-shadow: 0 2px 10px rgba(0,0,0,0.3);
+}
+.feedback-carousel {
+    position: relative;
+    overflow: hidden;
+    border-radius: 20px;
+    border: 1px solid rgba(212, 175, 55, 0.25);
+    background: rgba(0,0,0,0.2);
+    padding: 20px;
+    backdrop-filter: blur(5px);
+}
+.feedback-track {
+    display: flex;
+    gap: 15px;
+    transition: transform 0.7s ease-in-out;
+    will-change: transform;
+}
+.feedback-slide {
+    min-width: calc(33.333% - 10px);
+    flex-shrink: 0;
+    border-radius: 15px;
+    overflow: hidden;
+    border: 2px solid rgba(212, 175, 55, 0.15);
+    background: rgba(255,255,255,0.03);
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+.feedback-slide:hover {
+    transform: translateY(-5px);
+    border-color: #d4af37;
+    box-shadow: 0 10px 30px rgba(212, 175, 55, 0.2);
+}
+.feedback-slide img {
+    width: 100%;
+    height: 240px;
+    object-fit: cover;
+    display: block;
+    border-radius: 12px;
+}
+@media (max-width: 900px) {
+    .feedback-slide { min-width: calc(50% - 8px); }
+    .feedback-slide img { height: 200px; }
+}
+@media (max-width: 560px) {
+    .feedback-slide { min-width: 100%; }
+    .feedback-slide img { height: 280px; }
+}
     </style>
 </head>
 <body>
@@ -291,6 +349,15 @@ html_final = '''<!DOCTYPE html>
                 <div class="stat-item"><div class="stat-number">97%</div><div class="stat-label">متوافق مع ATS</div></div>
                 <div class="stat-item"><div class="stat-number">999+</div><div class="stat-label">عميل سعيد</div></div>
             </div>
+            <!-- ===== FEEDBACK CAROUSEL ===== -->
+<div class="feedback-section">
+    <h3>⭐ آراء و تقييمات عملائنا</h3>
+    <div class="feedback-carousel">
+        <div class="feedback-track" id="feedbackTrack">
+            <!-- الصور هتتولد تلقائياً بالـ JavaScript -->
+        </div>
+    </div>
+</div>
             <a href="#" class="btn-primary" onclick="document.getElementById('categories').scrollIntoView({behavior:'smooth'}); return false;">📄 تصفح النماذج</a>
         </div>
         
@@ -706,6 +773,66 @@ function getViewLink(fileId) {
                 }
             });
         });
+        // ===== FEEDBACK CAROUSEL =====
+(function() {
+    const track = document.getElementById('feedbackTrack');
+    if (!track) return;
+    
+    const TOTAL_IMAGES = 99;   // عدد الصور اللي عندك (1.jpeg لـ 99.jpeg)
+    const IMAGE_PATH = '';     // لو الصور في مجلد غير المجلد الرئيسي غيره (مثلاً: 'feedback/')
+    
+    // توليد الصور تلقائياً
+    let html = '';
+    for (let i = 1; i <= TOTAL_IMAGES; i++) {
+        html += `
+            <div class="feedback-slide">
+                <img src="${IMAGE_PATH}${i}.jpeg" 
+                     alt="Feedback ${i}" 
+                     loading="lazy"
+                     onerror="this.parentElement.style.display='none'">
+            </div>
+        `;
+    }
+    track.innerHTML = html;
+    
+    const slides = track.querySelectorAll('.feedback-slide');
+    if (slides.length === 0) return;
+    
+    let currentIndex = 0;
+    
+    function getVisibleCount() {
+        if (window.innerWidth <= 560) return 1;
+        if (window.innerWidth <= 900) return 2;
+        return 3;
+    }
+    
+    function getMaxIndex() {
+        const visible = getVisibleCount();
+        return Math.max(0, slides.length - visible);
+    }
+    
+    function updateCarousel() {
+        const slideWidth = slides[0].offsetWidth + 15; // + gap
+        track.style.transform = `translateX(-${currentIndex * slideWidth}px)`;
+    }
+    
+    // التبديل التلقائي كل 2 ثانية
+    setInterval(() => {
+        const maxIndex = getMaxIndex();
+        currentIndex = currentIndex >= maxIndex ? 0 : currentIndex + 1;
+        updateCarousel();
+    }, 2000);
+    
+    // تحديث عند تغيير حجم الشاشة
+    window.addEventListener('resize', () => {
+        const maxIndex = getMaxIndex();
+        if (currentIndex > maxIndex) currentIndex = 0;
+        updateCarousel();
+    });
+    
+    // التهيئة الأولى
+    setTimeout(updateCarousel, 100);
+})();
     </script>
 </body>
 </html>'''
