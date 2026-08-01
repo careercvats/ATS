@@ -255,42 +255,143 @@ html_final = '''<!DOCTYPE html>
         }
         /* ===== MOBILE OPTIMIZATION (About & Social) ===== */
 @media (max-width: 768px) {
-    .about-section { margin: 30px auto; padding: 0 15px; }
-    .about-container { gap: 25px; }
-    .about-text h2 { font-size: 1.8rem; margin-bottom: 15px; }
+    .about-section { margin: 20px auto; padding: 0 15px; }
+    .about-container { gap: 20px; }
+    .about-text h2 { font-size: 1.6rem; margin-bottom: 12px; }
     .about-text h2::after { width: 40px; height: 3px; }
-    .about-text p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 15px; }
-    .about-values { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
-    .about-value { padding: 15px; border-radius: 12px; }
-    .about-value i { font-size: 1.4rem; margin-bottom: 8px; }
-    .about-value h4 { font-size: 0.9rem; }
-    .about-value span { font-size: 0.75rem; }
-    .about-image img { max-width: 220px; border-radius: 15px; border-width: 2px; }
-    .about-image::before { display: none; } /* نخفي الإطار الخلفي على الموبايل */
+    .about-text p { font-size: 0.9rem; line-height: 1.7; margin-bottom: 12px; }
+    .about-values { grid-template-columns: 1fr 1fr; gap: 10px; margin-top: 18px; }
+    .about-value { padding: 14px 10px; border-radius: 12px; }
+    .about-value i { font-size: 1.3rem; margin-bottom: 6px; }
+    .about-value h4 { font-size: 0.85rem; margin-bottom: 3px; }
+    .about-value span { font-size: 0.72rem; line-height: 1.4; display: block; }
+    .about-image { margin-top: 10px; }
+    .about-image img { max-width: 200px; border-radius: 16px; border-width: 2px; }
+    .about-image::before { display: none; }
     
-    .about-extra { margin-top: 40px; }
-    .about-extra h3 { font-size: 1.3rem; margin-bottom: 20px; }
-    .about-extra h3::after { width: 35px; height: 2px; bottom: -6px; }
+    /* تعديل العناوين الرئيسية */
+    .about-extra { margin-top: 35px; }
+    .about-extra h3 {
+        font-size: 1.25rem;
+        margin-bottom: 18px;
+        display: block;
+        text-align: center;
+        left: auto;
+        transform: none;
+        width: 100%;
+    }
+    .about-extra h3::after {
+        right: 50%;
+        transform: translateX(50%);
+        width: 40px;
+        height: 3px;
+        bottom: -8px;
+    }
     
-    .social-about-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 30px; }
-    .social-about-card { padding: 15px 8px; border-radius: 14px; }
-    .social-about-card i { font-size: 1.6rem; margin-bottom: 8px; }
-    .social-about-card .sa-name { font-size: 0.85rem; }
-    .social-about-card .sa-desc { font-size: 0.7rem; }
+    /* شبكة التواصل - صفين */
+    .social-about-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+        max-width: 100%;
+        margin: 0 auto 30px;
+    }
+    .social-about-card {
+        padding: 16px 8px;
+        border-radius: 14px;
+        min-width: 0;
+    }
+    .social-about-card i {
+        font-size: 1.5rem;
+        margin-bottom: 8px;
+    }
+    .social-about-card .sa-name {
+        font-size: 0.82rem;
+        margin-bottom: 3px;
+    }
+    .social-about-card .sa-desc {
+        font-size: 0.68rem;
+    }
     
-    .channels-grid { gap: 15px; margin-bottom: 25px; }
-    .channel-card { padding: 22px 18px; border-radius: 16px; }
-    .channel-card i { font-size: 2.2rem; margin-bottom: 10px; }
-    .channel-card .ch-title { font-size: 1.05rem; }
-    .channel-card .ch-desc { font-size: 0.82rem; margin-bottom: 12px; }
-    .channel-card .ch-badge { padding: 5px 12px; font-size: 0.72rem; }
+    /* قنوات الوظائف */
+    .channels-grid {
+        grid-template-columns: 1fr;
+        gap: 15px;
+        max-width: 100%;
+        margin: 0 auto 25px;
+    }
+    .channel-card {
+        padding: 22px 18px;
+        border-radius: 18px;
+    }
+    .channel-card i {
+        font-size: 2.2rem;
+        margin-bottom: 12px;
+    }
+    .channel-card .ch-title {
+        font-size: 1.1rem;
+        margin-bottom: 6px;
+    }
+    .channel-card .ch-desc {
+        font-size: 0.85rem;
+        line-height: 1.6;
+        margin-bottom: 14px;
+    }
+    .channel-card .ch-badge {
+        padding: 6px 14px;
+        font-size: 0.78rem;
+    }
     
-    .whatsapp-cta { padding: 14px 20px; gap: 10px; margin-top: 20px; }
-    .whatsapp-cta i { font-size: 1.5rem; }
-    .whatsapp-cta .wa-label { font-size: 0.75rem; }
-    .whatsapp-cta .wa-number { font-size: 1.05rem; }
+    /* زر الواتساب */
+    .whatsapp-cta {
+        padding: 14px 20px;
+        gap: 12px;
+        margin-top: 20px;
+        border-radius: 40px;
+        max-width: 100%;
+    }
+    .whatsapp-cta i { font-size: 1.6rem; }
+    .whatsapp-cta .wa-text { text-align: right; }
+    .whatsapp-cta .wa-label { font-size: 0.78rem; }
+    .whatsapp-cta .wa-number { font-size: 1.1rem; }
 }
 
+@media (max-width: 480px) {
+    .about-section { padding: 0 12px; }
+    .about-container { gap: 15px; }
+    .about-text h2 { font-size: 1.4rem; }
+    .about-text p { font-size: 0.85rem; line-height: 1.65; }
+    .about-values { grid-template-columns: 1fr 1fr; gap: 8px; }
+    .about-value { padding: 12px 8px; }
+    .about-value i { font-size: 1.2rem; }
+    .about-value h4 { font-size: 0.8rem; }
+    .about-value span { font-size: 0.68rem; }
+    .about-image img { max-width: 160px; }
+    
+    .about-extra { margin-top: 30px; }
+    .about-extra h3 { font-size: 1.15rem; margin-bottom: 15px; }
+    .about-extra h3::after { width: 35px; bottom: -6px; }
+    
+    .social-about-grid { gap: 8px; }
+    .social-about-card { padding: 14px 6px; border-radius: 12px; }
+    .social-about-card i { font-size: 1.4rem; margin-bottom: 6px; }
+    .social-about-card .sa-name { font-size: 0.78rem; }
+    .social-about-card .sa-desc { font-size: 0.65rem; }
+    
+    .channel-card { padding: 18px 14px; }
+    .channel-card i { font-size: 2rem; margin-bottom: 10px; }
+    .channel-card .ch-title { font-size: 1rem; }
+    .channel-card .ch-desc { font-size: 0.8rem; margin-bottom: 12px; }
+    .channel-card .ch-badge { padding: 5px 12px; font-size: 0.72rem; }
+    
+    .whatsapp-cta {
+        flex-direction: row;
+        padding: 12px 16px;
+        gap: 10px;
+    }
+    .whatsapp-cta i { font-size: 1.5rem; }
+    .whatsapp-cta .wa-label { font-size: 0.72rem; }
+    .whatsapp-cta .wa-number { font-size: 1rem; }
+}
 @media (max-width: 480px) {
     .about-container { gap: 20px; }
     .about-text h2 { font-size: 1.5rem; }
