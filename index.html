@@ -253,9 +253,65 @@ html_final = '''<!DOCTYPE html>
             .category-tabs { gap: 10px; }
             .cat-tab { min-width: 120px; padding: 15px; }
         }
-        @media (max-width: 480px) {
-            .social-grid { grid-template-columns: 1fr; }
-        }
+        /* ===== MOBILE OPTIMIZATION (About & Social) ===== */
+@media (max-width: 768px) {
+    .about-section { margin: 30px auto; padding: 0 15px; }
+    .about-container { gap: 25px; }
+    .about-text h2 { font-size: 1.8rem; margin-bottom: 15px; }
+    .about-text h2::after { width: 40px; height: 3px; }
+    .about-text p { font-size: 0.95rem; line-height: 1.8; margin-bottom: 15px; }
+    .about-values { grid-template-columns: 1fr 1fr; gap: 12px; margin-top: 20px; }
+    .about-value { padding: 15px; border-radius: 12px; }
+    .about-value i { font-size: 1.4rem; margin-bottom: 8px; }
+    .about-value h4 { font-size: 0.9rem; }
+    .about-value span { font-size: 0.75rem; }
+    .about-image img { max-width: 220px; border-radius: 15px; border-width: 2px; }
+    .about-image::before { display: none; } /* نخفي الإطار الخلفي على الموبايل */
+    
+    .about-extra { margin-top: 40px; }
+    .about-extra h3 { font-size: 1.3rem; margin-bottom: 20px; }
+    .about-extra h3::after { width: 35px; height: 2px; bottom: -6px; }
+    
+    .social-about-grid { grid-template-columns: repeat(2, 1fr); gap: 10px; margin-bottom: 30px; }
+    .social-about-card { padding: 15px 8px; border-radius: 14px; }
+    .social-about-card i { font-size: 1.6rem; margin-bottom: 8px; }
+    .social-about-card .sa-name { font-size: 0.85rem; }
+    .social-about-card .sa-desc { font-size: 0.7rem; }
+    
+    .channels-grid { gap: 15px; margin-bottom: 25px; }
+    .channel-card { padding: 22px 18px; border-radius: 16px; }
+    .channel-card i { font-size: 2.2rem; margin-bottom: 10px; }
+    .channel-card .ch-title { font-size: 1.05rem; }
+    .channel-card .ch-desc { font-size: 0.82rem; margin-bottom: 12px; }
+    .channel-card .ch-badge { padding: 5px 12px; font-size: 0.72rem; }
+    
+    .whatsapp-cta { padding: 14px 20px; gap: 10px; margin-top: 20px; }
+    .whatsapp-cta i { font-size: 1.5rem; }
+    .whatsapp-cta .wa-label { font-size: 0.75rem; }
+    .whatsapp-cta .wa-number { font-size: 1.05rem; }
+}
+
+@media (max-width: 480px) {
+    .about-container { gap: 20px; }
+    .about-text h2 { font-size: 1.5rem; }
+    .about-text p { font-size: 0.9rem; }
+    .about-values { grid-template-columns: 1fr; gap: 10px; }
+    .about-value { padding: 12px; }
+    .about-image img { max-width: 180px; }
+    
+    .social-about-grid { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .social-about-card { padding: 12px 6px; }
+    .social-about-card i { font-size: 1.4rem; }
+    .social-about-card .sa-name { font-size: 0.8rem; }
+    
+    .channel-card { padding: 18px 15px; }
+    .channel-card i { font-size: 2rem; }
+    .channel-card .ch-title { font-size: 1rem; }
+    .channel-card .ch-desc { font-size: 0.78rem; }
+    
+    .whatsapp-cta { flex-direction: row; padding: 12px 15px; }
+    .whatsapp-cta .wa-number { font-size: 0.95rem; }
+}
         /* ===== FEEDBACK CAROUSEL ===== */
 .feedback-section {
     max-width: 900px;
