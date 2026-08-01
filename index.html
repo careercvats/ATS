@@ -723,20 +723,152 @@ html_final = '''<!DOCTYPE html>
     font-size: 0.95rem;
 }
 
-/* Responsive Org Chart */
+/* ===== RESPONSIVE ORG CHART (MOBILE TREE) ===== */
 @media (max-width: 992px) {
     .about-container { grid-template-columns: 1fr; text-align: center; }
     .about-text h2::after { right: 50%; transform: translateX(50%); }
     .about-values { grid-template-columns: 1fr; }
     .about-image { order: -1; }
-    .org-branches { gap: 40px; flex-direction: column; }
+    
+    /* الشجرة على الموبايل: كل فرع تحت التاني بس متصل بالخطوط */
+    .org-section { overflow-x: hidden; }
+    .org-tree { padding-top: 10px; }
+    
+    /* خط المدير العام */
+    .org-ceo::after {
+        display: block;
+        height: 30px;
+        bottom: -30px;
+    }
+    
+    /* الفروع فوق بعض */
+    .org-branches {
+        flex-direction: column;
+        gap: 50px;
+        align-items: center;
+        width: 100%;
+    }
+    /* نخفي الخط الأفقي اللي بين الفرعين بس */
     .org-branches::before { display: none; }
-    .org-team { grid-template-columns: repeat(2, 1fr); }
-    .org-ceo::after, .org-branch::before, .org-manager::after { display: none; }
+    
+    .org-branch {
+        width: 100%;
+        max-width: 600px;
+        align-items: center;
+        position: relative;
+        padding-top: 30px;
+    }
+    
+    /* خط رأسي من المدير العام لكل مديرة */
+    .org-branch::before {
+        display: block;
+        position: absolute;
+        top: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 30px;
+        background: linear-gradient(to bottom, rgba(212,175,55,0.3), #d4af37);
+    }
+    
+    /* المديرة */
+    .org-manager {
+        margin-bottom: 30px;
+        position: relative;
+    }
+    .org-manager::after {
+        display: block;
+        height: 30px;
+        bottom: -30px;
+    }
+    
+    /* الفريق: 4 أعمدة على التابلت */
+    .org-team {
+        grid-template-columns: repeat(4, 1fr);
+        gap: 12px;
+        width: 100%;
+        margin-top: 30px;
+        position: relative;
+    }
+    
+    /* خط أفقي فوق الفريق */
+    .sales-branch .org-team::before,
+    .exec-branch .org-team::before {
+        display: block;
+        top: -30px;
+        left: 12.5%;
+        right: 12.5%;
+        height: 2px;
+        background: linear-gradient(90deg, transparent, #d4af37, transparent);
+    }
+    
+    /* خط رأسي لكل موظف (الصف الأول بس) */
+    .org-team .org-node:nth-child(-n+4)::before {
+        content: '';
+        position: absolute;
+        top: -12px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 12px;
+        background: linear-gradient(to bottom, #d4af37, rgba(212,175,55,0.3));
+    }
+    .org-team .org-node { position: relative; }
+    
+    .org-team .org-node {
+        min-width: auto;
+        padding: 12px 8px;
+    }
+    .org-team .org-node img {
+        width: 50px;
+        height: 50px;
+    }
+    .org-team .org-node .name { font-size: 0.8rem; }
+    .org-team .org-node .role { font-size: 0.7rem; }
+    
+    .org-manager .org-node {
+        min-width: 160px;
+        padding: 18px;
+    }
+    .org-manager .org-node img {
+        width: 75px;
+        height: 75px;
+    }
 }
+
+@media (max-width: 600px) {
+    .org-team {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 10px;
+    }
+    .org-team .org-node:nth-child(-n+4)::before { display: none; }
+    .org-team .org-node:nth-child(-n+2)::before {
+        content: '';
+        position: absolute;
+        top: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 2px;
+        height: 10px;
+        background: linear-gradient(to bottom, #d4af37, rgba(212,175,55,0.3));
+    }
+    .org-manager::after { height: 20px; bottom: -20px; }
+    .sales-branch .org-team::before,
+    .exec-branch .org-team::before { top: -20px; }
+    .org-branch::before { height: 20px; }
+    .org-ceo::after { height: 20px; bottom: -20px; }
+    .org-branch { padding-top: 20px; }
+    .org-team { margin-top: 20px; }
+}
+
 @media (max-width: 480px) {
-    .org-team { grid-template-columns: 1fr; }
-    .org-node { min-width: 140px; }
+    .org-team { grid-template-columns: repeat(2, 1fr); gap: 8px; }
+    .org-node { min-width: auto; padding: 10px 5px; }
+    .org-node img { width: 50px; height: 50px; }
+    .org-node .name { font-size: 0.75rem; }
+    .org-node .role { font-size: 0.65rem; }
+    .org-manager .org-node { min-width: 140px; padding: 15px; }
+    .org-manager .org-node img { width: 65px; height: 65px; }
 }
     </style>
 </head>
