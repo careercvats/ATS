@@ -487,6 +487,221 @@ html_final = '''<!DOCTYPE html>
     z-index: -1;
     opacity: 0.3;
 }
+        /* ===== SOCIAL & CHANNELS SECTIONS ===== */
+.about-extra {
+    margin-top: 60px;
+}
+.about-extra h3 {
+    text-align: center;
+    color: #d4af37;
+    font-size: 1.8rem;
+    margin-bottom: 30px;
+    position: relative;
+    display: inline-block;
+    left: 50%;
+    transform: translateX(-50%);
+}
+.about-extra h3::after {
+    content: '';
+    position: absolute;
+    bottom: -8px;
+    right: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #d4af37, transparent);
+    border-radius: 2px;
+}
+
+/* Social Grid */
+.social-about-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    max-width: 900px;
+    margin: 0 auto 50px;
+}
+.social-about-card {
+    background: rgba(255,255,255,0.05);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(212,175,55,0.2);
+    border-radius: 18px;
+    padding: 25px 15px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+.social-about-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 3px;
+    background: linear-gradient(90deg, #d4af37, #b8941f);
+    transform: scaleX(0);
+    transition: transform 0.3s ease;
+}
+.social-about-card:hover::before { transform: scaleX(1); }
+.social-about-card:hover {
+    transform: translateY(-8px);
+    border-color: #d4af37;
+    background: rgba(212,175,55,0.08);
+    box-shadow: 0 15px 40px rgba(212,175,55,0.15);
+}
+.social-about-card i {
+    font-size: 2.2rem;
+    margin-bottom: 12px;
+    display: block;
+    transition: transform 0.3s ease;
+}
+.social-about-card:hover i { transform: scale(1.2); }
+.social-about-card .sa-name {
+    font-weight: 700;
+    font-size: 1rem;
+    margin-bottom: 5px;
+    color: #fff;
+}
+.social-about-card .sa-desc {
+    font-size: 0.8rem;
+    color: rgba(255,255,255,0.6);
+}
+/* Brand Colors on Hover */
+.social-about-card.linkedin:hover i { color: #0A66C2; }
+.social-about-card.linkedin-owner:hover i { color: #0077B5; }
+.social-about-card.facebook:hover i { color: #1877F2; }
+.social-about-card.instagram:hover i { 
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    -webkit-background-clip: text; -webkit-text-fill-color: transparent; background-clip: text;
+}
+.social-about-card.whatsapp:hover i { color: #25D366; }
+.social-about-card.telegram:hover i { color: #0088cc; }
+
+/* Job Channels */
+.channels-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 25px;
+    max-width: 900px;
+    margin: 0 auto 40px;
+}
+.channel-card {
+    background: linear-gradient(135deg, rgba(13,59,46,0.9), rgba(26,92,74,0.9));
+    border: 2px solid rgba(212,175,55,0.3);
+    border-radius: 20px;
+    padding: 30px;
+    text-align: center;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.4s ease;
+    position: relative;
+    overflow: hidden;
+}
+.channel-card::after {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 200%;
+    height: 200%;
+    background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+    opacity: 0;
+    transition: opacity 0.4s ease;
+}
+.channel-card:hover::after { opacity: 1; }
+.channel-card:hover {
+    transform: translateY(-10px);
+    border-color: #d4af37;
+    box-shadow: 0 20px 50px rgba(212,175,55,0.2);
+}
+.channel-card i {
+    font-size: 3rem;
+    margin-bottom: 15px;
+    display: block;
+}
+.channel-card.telegram-card i { color: #0088cc; }
+.channel-card.whatsapp-card i { color: #25D366; }
+.channel-card .ch-title {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #d4af37;
+    margin-bottom: 8px;
+}
+.channel-card .ch-desc {
+    font-size: 0.95rem;
+    color: rgba(255,255,255,0.8);
+    line-height: 1.6;
+    margin-bottom: 15px;
+}
+.channel-card .ch-badge {
+    display: inline-block;
+    background: rgba(212,175,55,0.2);
+    color: #d4af37;
+    padding: 6px 16px;
+    border-radius: 20px;
+    font-size: 0.8rem;
+    font-weight: 700;
+    border: 1px solid rgba(212,175,55,0.4);
+}
+.channel-card:hover .ch-badge {
+    background: #d4af37;
+    color: #0d3b2e;
+}
+
+/* WhatsApp Number CTA */
+.whatsapp-cta {
+    max-width: 600px;
+    margin: 30px auto 0;
+    background: rgba(37,211,102,0.1);
+    border: 2px solid rgba(37,211,102,0.4);
+    border-radius: 50px;
+    padding: 18px 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 15px;
+    text-decoration: none;
+    color: #fff;
+    transition: all 0.3s ease;
+}
+.whatsapp-cta:hover {
+    background: rgba(37,211,102,0.2);
+    border-color: #25D366;
+    transform: translateY(-3px);
+    box-shadow: 0 10px 30px rgba(37,211,102,0.2);
+}
+.whatsapp-cta i {
+    font-size: 1.8rem;
+    color: #25D366;
+}
+.whatsapp-cta .wa-text {
+    text-align: right;
+}
+.whatsapp-cta .wa-label {
+    font-size: 0.85rem;
+    color: rgba(255,255,255,0.7);
+    display: block;
+}
+.whatsapp-cta .wa-number {
+    font-size: 1.3rem;
+    font-weight: 700;
+    color: #25D366;
+    direction: ltr;
+    display: inline-block;
+}
+
+@media (max-width: 768px) {
+    .social-about-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; }
+    .social-about-card { padding: 18px 10px; }
+    .channels-grid { grid-template-columns: 1fr; }
+    .whatsapp-cta { flex-direction: column; text-align: center; gap: 8px; padding: 15px 20px; }
+    .whatsapp-cta .wa-text { text-align: center; }
+}
+@media (max-width: 480px) {
+    .social-about-grid { grid-template-columns: 1fr; }
+}
 
 /* ===== ORG CHART (شجرة الشركة) ===== */
 .org-section {
@@ -1036,7 +1251,7 @@ html_final = '''<!DOCTYPE html>
 <div class="results-count" id="countLinkedin"></div>
         <div class="jobs-grid" id="linkedinGrid"></div>
     </section>
-    <!-- ABOUT SECTION -->
+<!-- ABOUT SECTION -->
 <section class="section" id="aboutSection">
     <a href="#" class="back-btn" onclick="showHome(); return false;">← العودة للرئيسية</a>
     <div class="about-section">
@@ -1079,9 +1294,68 @@ html_final = '''<!DOCTYPE html>
                 <img src="sama.jpg" alt="CAREER CV Team">
             </div>
         </div>
+
+        <!-- ⬇️⬇️⬇️ حط الكود الجديد هنا ⬇️⬇️⬇️ -->
+
+        <!-- مواقع التواصل -->
+        <div class="about-extra">
+            <h3>🌐 تواصل معنا</h3>
+            <div class="social-about-grid">
+                <a href="https://www.facebook.com/profile.php?id=61571549710838" target="_blank" class="social-about-card facebook">
+                    <i class="fab fa-facebook"></i>
+                    <div class="sa-name">Facebook</div>
+                    <div class="sa-desc">صفحة CAREER CV</div>
+                </a>
+                <a href="https://www.instagram.com/career__cv/" target="_blank" class="social-about-card instagram">
+                    <i class="fab fa-instagram"></i>
+                    <div class="sa-name">Instagram</div>
+                    <div class="sa-desc">صفحة CAREER CV</div>
+                </a>
+                <a href="https://www.linkedin.com/company/career-cv/?viewAsMember=true" target="_blank" class="social-about-card linkedin">
+                    <i class="fab fa-linkedin"></i>
+                    <div class="sa-name">LinkedIn</div>
+                    <div class="sa-desc">حساب الشركة</div>
+                </a>
+                <a href="https://www.linkedin.com/in/eng-mohammed-elshemy-39070b315/" target="_blank" class="social-about-card linkedin-owner">
+                    <i class="fab fa-linkedin"></i>
+                    <div class="sa-name">LinkedIn</div>
+                    <div class="sa-desc">Eng. Mohammed ElShemy</div>
+                </a>
+            </div>
+        </div>
+
+        <!-- قنوات الوظائف اليومية -->
+        <div class="about-extra">
+            <h3>📢 قنوات الوظائف اليومية</h3>
+            <div class="channels-grid">
+                <a href="https://t.me/careercvhiring" target="_blank" class="channel-card telegram-card">
+                    <i class="fab fa-telegram"></i>
+                    <div class="ch-title">Telegram Channel</div>
+                    <div class="ch-desc">وظائف يومية في السعودية والإمارات<br>أكثر من 50 وظيفة يومياً تصلك فوراً</div>
+                    <span class="ch-badge">انضم الآن</span>
+                </a>
+                <a href="https://whatsapp.com/channel/0029VbAl4ri9sBIBNxzEoU3i" target="_blank" class="channel-card whatsapp-card">
+                    <i class="fab fa-whatsapp"></i>
+                    <div class="ch-title">WhatsApp Channel</div>
+                    <div class="ch-desc">وظائف يومية في السعودية والإمارات<br>تحديثات فورية على هاتفك</div>
+                    <span class="ch-badge">اشترك الآن</span>
+                </a>
+            </div>
+
+            <!-- رقم الواتساب المباشر -->
+            <a href="https://wa.me/971545136410" target="_blank" class="whatsapp-cta">
+                <i class="fab fa-whatsapp"></i>
+                <div class="wa-text">
+                    <span class="wa-label">تواصل مباشر عبر واتساب</span>
+                    <span class="wa-number">+971 54 513 6410</span>
+                </div>
+            </a>
+        </div>
+
+        <!-- ⬆️⬆️⬆️ خلاص الكود الجديد ⬆️⬆️⬆️ -->
+
     </div>
 </section>
-
 <!-- ORG CHART SECTION (شجرة الشركة) -->
 <section class="section" id="orgSection">
     <a href="#" class="back-btn" onclick="showHome(); return false;">← العودة للرئيسية</a>
