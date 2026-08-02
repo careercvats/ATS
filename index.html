@@ -1094,118 +1094,69 @@ html_final = '''<!DOCTYPE html>
     line-height: 1.8;
     font-size: 0.95rem;
 }
+        .emp-modal .modal-rating {
+    color: #ffd700;
+    font-size: 1.3rem;
+    font-weight: 700;
+    margin-bottom: 15px;
+    letter-spacing: 2px;
+    text-shadow: 0 2px 8px rgba(255, 215, 0, 0.3);
+    direction: ltr;
+    display: inline-block;
+    background: rgba(255, 215, 0, 0.1);
+    padding: 6px 18px;
+    border-radius: 30px;
+    border: 1px solid rgba(255, 215, 0, 0.3);
+}
 
 /* ===== RESPONSIVE ORG CHART (MOBILE TREE) ===== */
+/* الهيكل يفضل شكله الأفقي على الموبايل بس يتصغر proportionally */
+
 @media (max-width: 992px) {
     .about-container { grid-template-columns: 1fr; text-align: center; }
     .about-text h2::after { right: 50%; transform: translateX(50%); }
     .about-values { grid-template-columns: 1fr; }
     .about-image { order: -1; }
     
-    /* الشجرة على الموبايل: كل فرع تحت التاني بس متصل بالخطوط */
-    .org-section { overflow-x: hidden; }
-    .org-tree { padding-top: 10px; }
-    
-    /* خط المدير العام */
-    .org-ceo::after {
-        display: block;
-        height: 30px;
-        bottom: -30px;
+    .org-section { 
+        overflow-x: auto; 
+        overflow-y: hidden;
+        -webkit-overflow-scrolling: touch;
+        padding: 20px 10px 40px;
+    }
+    .org-tree { 
+        padding-top: 10px; 
+        min-width: 750px;
+        transform: scale(0.85);
+        transform-origin: top center;
     }
     
-    /* الفروع فوق بعض */
-    .org-branches {
-        flex-direction: column;
-        gap: 50px;
-        align-items: center;
-        width: 100%;
-    }
-    /* نخفي الخط الأفقي اللي بين الفرعين بس */
-    .org-branches::before { display: none; }
-    
-    .org-branch {
-        width: 100%;
-        max-width: 600px;
-        align-items: center;
-        position: relative;
-        padding-top: 30px;
-    }
-    
-    /* خط رأسي من المدير العام لكل مديرة */
-    .org-branch::before {
-        display: block;
-        position: absolute;
-        top: 0;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 30px;
-        background: linear-gradient(to bottom, rgba(212,175,55,0.3), #d4af37);
-    }
-    
-    /* المديرة */
-    .org-manager {
-        margin-bottom: 30px;
-        position: relative;
-    }
-    .org-manager::after {
-        display: block;
-        height: 30px;
-        bottom: -30px;
-    }
-    
-    /* الفريق: 4 أعمدة على التابلت */
-    .org-team {
-        grid-template-columns: repeat(4, 1fr);
-        gap: 12px;
-        width: 100%;
-        margin-top: 30px;
-        position: relative;
-    }
-    
-    /* خط أفقي فوق الفريق */
-    .sales-branch .org-team::before,
-    .exec-branch .org-team::before {
-        display: block;
-        top: -30px;
-        left: 12.5%;
-        right: 12.5%;
-        height: 2px;
-        background: linear-gradient(90deg, transparent, #d4af37, transparent);
-    }
-    
-    /* خط رأسي لكل موظف (الصف الأول بس) */
-    .org-team .org-node:nth-child(-n+4)::before {
-        content: '';
-        position: absolute;
-        top: -12px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 12px;
-        background: linear-gradient(to bottom, #d4af37, rgba(212,175,55,0.3));
-    }
-    .org-team .org-node { position: relative; }
-    
-    .org-team .org-node {
-        min-width: auto;
-        padding: 12px 8px;
-    }
-    .org-team .org-node img {
-        width: 50px;
-        height: 50px;
-    }
+    .org-branches { gap: 80px; }
+    .org-team { gap: 12px; }
+    .org-team .org-node { padding: 12px 8px; min-width: 110px; }
+    .org-team .org-node img { width: 50px; height: 50px; }
     .org-team .org-node .name { font-size: 0.8rem; }
     .org-team .org-node .role { font-size: 0.7rem; }
-    
-    .org-manager .org-node {
-        min-width: 160px;
-        padding: 18px;
+    .org-manager .org-node { min-width: 150px; padding: 16px; }
+    .org-manager .org-node img { width: 70px; height: 70px; }
+}
+
+@media (max-width: 768px) {
+    .org-tree { 
+        transform: scale(0.65); 
+        transform-origin: top center;
+        min-width: 750px;
     }
-    .org-manager .org-node img {
-        width: 75px;
-        height: 75px;
+    .org-section { padding-bottom: 30px; }
+}
+
+@media (max-width: 480px) {
+    .org-tree { 
+        transform: scale(0.48); 
+        transform-origin: top center;
+        min-width: 750px;
     }
+    .org-section { padding: 10px 5px 20px; }
 }
 
 @media (max-width: 600px) {
@@ -1525,7 +1476,7 @@ html_final = '''<!DOCTYPE html>
         <div class="org-tree">
             <!-- المدير العام -->
             <div class="org-ceo">
-                <div class="org-node" onclick="openModal('Mohammed Elshemy', 'المدير العام', 'a.jpeg', 'يقود رؤية الشركة الاستراتيجية مع أكثر من 15 عاماً من الخبرة في التوظيف والموارد البشرية.')">
+                <div class="org-node" onclick="openModal('Mohammed Elshemy', 'المدير العام', 'a.jpeg', 'يقود رؤية الشركة الاستراتيجية مع أكثر من 15 عاماً من الخبرة في التوظيف والموارد البشرية.', '5.0')">
                     <img src="a.jpeg" alt="المدير العام" onerror="this.src='a.jpeg'">
                     <div class="name">Eng.Mohammed Elshemy</div>
                     <div class="role">CEO</div>
@@ -1544,47 +1495,47 @@ html_final = '''<!DOCTYPE html>
                         </div>
                     </div>
                     <div class="org-team">
-                        <div class="org-node" onclick="openModal('Mariam Sayed', 'Sales', 'd.jpeg', 'محترفة في التفاوض وإقفال الصفقات بكفاءة عالية.')">
+                        <div class="org-node" onclick="openModal('Mariam Sayed', 'Sales', 'd.jpeg', '4.0' , 'محترفة في التفاوض وإقفال الصفقات بكفاءة عالية.')">
                             <img src="d.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Mariam Sayed</div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Mariam', 'Sales', 'e.jpeg', 'متخصصة في السوق الخليجي وتحليل احتياجات العملاء.')">
+                        <div class="org-node" onclick="openModal('Mariam', 'Sales', 'e.jpeg', '4.0' , 'متخصصة في السوق الخليجي وتحليل احتياجات العملاء.')">
                             <img src="e.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Mariam</div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Areej Adel ', 'Sales', 'f.jpeg', 'خبيرة في تطوير الحسابات الكبرى وإدارة علاقات العملاء.')">
+                        <div class="org-node" onclick="openModal('Areej Adel ', 'Sales', 'f.jpeg', '4.0' , 'خبيرة في تطوير الحسابات الكبرى وإدارة علاقات العملاء.')">
                             <img src="f.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Areej Adel</div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Aya Ahmed', 'Sales', 'g.jpeg', 'محترفة في التفاوض وإقفال الصفقات بكفاءة عالية.')">
+                        <div class="org-node" onclick="openModal('Aya Ahmed', 'Sales', 'g.jpeg', '4.0' , 'محترفة في التفاوض وإقفال الصفقات بكفاءة عالية.')">
                             <img src="g.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Aya Ahmed</div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Fatma Ebrahim', 'Sales', 'h.jpeg', 'محترفة في التفاوض وإقفال الصفقات بكفاءة عالية.')">
+                        <div class="org-node" onclick="openModal('Fatma Ebrahim', 'Sales', 'h.jpeg',  '4.0' ,'محترفة في التفاوض وإقفال الصفقات بكفاءة عالية.')">
                             <img src="h.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Fatma Ebrahim</div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Mariam Sami', 'Sales', 'i.jpeg', 'خبيرة في تحليل بيانات المبيعات وتوقع الاتجاهات.')">
+                        <div class="org-node" onclick="openModal('Mariam Sami', 'Sales', 'i.jpeg', '4.0' , 'خبيرة في تحليل بيانات المبيعات وتوقع الاتجاهات.')">
                             <img src="i.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Mariam Sami</div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Heba Mahmoud', 'Sales', 'j.jpeg', 'متخصصة في خدمة العملاء وتحويل الاستفسارات لصفقات.')">
+                        <div class="org-node" onclick="openModal('Heba Mahmoud', 'Sales', 'j.jpeg', '4.0' , 'متخصصة في خدمة العملاء وتحويل الاستفسارات لصفقات.')">
                             <img src="j.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Heba Mahmoud </div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Amena Marie ', 'Sales', 'k.jpeg', 'مسؤول عن الشراكات الاستراتيجية والتعاقدات الجماعية.')">
+                        <div class="org-node" onclick="openModal('Amena Marie ', 'Sales', 'k.jpeg', '4.0' , 'مسؤولة عن الشراكات الاستراتيجية والتعاقدات الجماعية.')">
                             <img src="k.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Amena Marie</div>
                             <div class="role">Sales</div>
                         </div>
-                        <div class="org-node" onclick="openModal('Karima Helal ', 'Sales', 'k.jpeg', 'مسؤول عن الشراكات الاستراتيجية والتعاقدات الجماعية.')">
+                        <div class="org-node" onclick="openModal('Karima Helal ', 'Sales', 'k.jpeg', '4.0' , 'مسؤولة عن الشراكات الاستراتيجية والتعاقدات الجماعية.')">
                             <img src="k.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">Karima Helal</div>
                             <div class="role">Sales</div>
@@ -1595,44 +1546,44 @@ html_final = '''<!DOCTYPE html>
                 <!-- القسم التنفيذي -->
                 <div class="org-branch exec-branch">
                     <div class="org-manager">
-                        <div class="org-node" onclick="openModal('Wafaa Hefny', 'مديرة التنفيذ', 'c.jpeg', 'تشرف على العمليات اليومية وتطوير المنتجات بخبرة 12 عاماً في الإدارة.')">
+                        <div class="org-node" onclick="openModal('Wafaa Hefny', 'مديرة التنفيذ', 'c.jpeg', ' تشرف على العمليات اليومية وتطوير المنتجات بخبرة 5 سنوات في الإدارة والموارد البشرية.')">
                             <img src="c.jpeg" alt="المديرة التنفيذية" onerror="this.src='sama.jpg'">
                             <div class="name">Wafaa Hefny</div>
                             <div class="role">Operation Manager</div>
                         </div>
                     </div>
                     <div class="org-team">
-                        <div class="org-node" onclick="openModal('أمير طارق', 'أخصائي محتوى', 'l.jpeg', 'يصمم النماذج ويكتب المحتوى الاحترافي للسير الذاتية.')">
+                        <div class="org-node" onclick="openModal('أمير طارق', 'أخصائي محتوى', 'l.jpeg',  '4.0' ,'يصمم النماذج ويكتب المحتوى الاحترافي للسير الذاتية.')">
                             <img src="l.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">أمير طارق</div>
                             <div class="role">أخصائي محتوى</div>
                         </div>
-                        <div class="org-node" onclick="openModal('دينا فؤاد', 'مصممة جرافيك', 'm.jpeg', 'تبتكر التصاميم العصرية والواجهات البصرية المتميزة.')">
+                        <div class="org-node" onclick="openModal('دينا فؤاد', 'مصممة جرافيك', 'm.jpeg', '4.0' , 'تبتكر التصاميم العصرية والواجهات البصرية المتميزة.')">
                             <img src="m.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">دينا فؤاد</div>
                             <div class="role">مصممة جرافيك</div>
                         </div>
-                        <div class="org-node" onclick="openModal('رامي جمال', 'مطور ويب', 'n.jpeg', 'يقوم بتطوير المنصة وضمان تجربة مستخدم سلسة.')">
+                        <div class="org-node" onclick="openModal('رامي جمال', 'مطور ويب', 'n.jpeg', '4.0' , 'يقوم بتطوير المنصة وضمان تجربة مستخدم سلسة.')">
                             <img src="n.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">رامي جمال</div>
                             <div class="role">مطور ويب</div>
                         </div>
-                        <div class="org-node" onclick="openModal('هبة الله', 'أخصائية تسويق', 'o.jpeg', 'تدير الحملات الرقمية وتحليل أداء المنصات.')">
+                        <div class="org-node" onclick="openModal('هبة الله', 'أخصائية تسويق', 'o.jpeg', '4.0' , 'تدير الحملات الرقمية وتحليل أداء المنصات.')">
                             <img src="o.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">هبة الله</div>
                             <div class="role">أخصائية تسويق</div>
                         </div>
-                        <div class="org-node" onclick="openModal('كريم نادر', 'محلل بيانات', 'p.jpeg', 'يحلل بيانات السوق ويقدم توصيات استراتيجية.')">
+                        <div class="org-node" onclick="openModal('كريم نادر', 'محلل بيانات', 'p.jpeg', '4.0' , 'يحلل بيانات السوق ويقدم توصيات استراتيجية.')">
                             <img src="p.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">كريم نادر</div>
                             <div class="role">محلل بيانات</div>
                         </div>
-                        <div class="org-node" onclick="openModal('سلمى عادل', 'مسؤولة دعم', 'q.jpeg', 'توفر الدعم الفني والاستشارات للعملاء على مدار الساعة.')">
+                        <div class="org-node" onclick="openModal('سلمى عادل', 'مسؤولة دعم', 'q.jpeg', '4.0' , 'توفر الدعم الفني والاستشارات للعملاء على مدار الساعة.')">
                             <img src="q.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">سلمى عادل</div>
                             <div class="role">مسؤولة دعم</div>
                         </div>
-                        <div class="org-node" onclick="openModal('تامر وجدي', 'مراجع جودة', 'r.jpeg', 'يضمن جودة النماذج وتوافقها مع معايير ATS العالمية.')">
+                        <div class="org-node" onclick="openModal('تامر وجدي', 'مراجع جودة', 'r.jpeg', '4.0' , 'يضمن جودة النماذج وتوافقها مع معايير ATS العالمية.')">
                             <img src="r.jpeg" alt="موظف" onerror="this.src='sama.jpg'">
                             <div class="name">تامر وجدي</div>
                             <div class="role">مراجع جودة</div>
@@ -1646,11 +1597,12 @@ html_final = '''<!DOCTYPE html>
 
 <!-- MODAL -->
 <div class="emp-modal" id="empModal" onclick="closeModal(event)">
-    <div class="emp-modal-content" onclick="event.stopPropagation()">
+   <div class="emp-modal-content" onclick="event.stopPropagation()">
         <button class="emp-modal-close" onclick="closeModal()">✕</button>
         <img id="modalImg" src="" alt="">
         <h3 id="modalName"></h3>
         <div class="modal-role" id="modalRole"></div>
+        <div class="modal-rating" id="modalRating"></div>
         <p class="modal-bio" id="modalBio"></p>
     </div>
 </div>
@@ -2072,11 +2024,12 @@ function clearSearch(section) {
     window.goToFeedback = goToFeedback;
 })();
         // ===== MODAL FUNCTIONS =====
-function openModal(name, role, img, bio) {
+function openModal(name, role, img, bio, rating) {
     document.getElementById('modalName').textContent = name;
     document.getElementById('modalRole').textContent = role;
     document.getElementById('modalBio').textContent = bio;
     document.getElementById('modalImg').src = img;
+    document.getElementById('modalRating').textContent = rating ? '⭐ ' + rating : '';
     document.getElementById('empModal').classList.add('active');
     document.body.style.overflow = 'hidden';
 }
