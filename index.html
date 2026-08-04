@@ -1109,43 +1109,53 @@
     border: 1px solid rgba(255, 215, 0, 0.3);
 }
 
-/* ===== RESPONSIVE ORG CHART (MOBILE TREE) ===== */
-/* الهيكل ثابت في الموبايل — mini map بدون تمرير */
-
+/* ===== RESPONSIVE ORG CHART ===== */
 @media (max-width: 992px) {
     .about-container { grid-template-columns: 1fr; text-align: center; }
     .about-text h2::after { right: 50%; transform: translateX(50%); }
     .about-values { grid-template-columns: 1fr; }
     .about-image { order: -1; }
     
-    .org-section { 
-        overflow: hidden;        /* ← منع التمرير خالص */
-        padding: 20px 0;
+    .org-section {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        padding: 20px 10px;
         text-align: center;
     }
-    .org-tree { 
-        zoom: 0.95;              /* ← بيصغر الهيكل فعلياً */
+    .org-tree {
         display: inline-block;
-        padding-top: 10px;
+        transform: scale(1.0);
+        transform-origin: top center;
+        min-width: 1000px;
     }
 }
 
 @media (max-width: 768px) {
-    .org-tree { zoom: 2; }
+    .org-tree {
+        transform: scale(0.9);
+        transform-origin: top center;
+        min-width: 1000px;
+    }
+    .org-section {
+        padding-bottom: 150px;
+    }
 }
 
 @media (max-width: 480px) {
-    .org-tree { zoom: 0.30; }
-}
-    
-    .org-branches { gap: 80px; }
-    .org-team { gap: 12px; }
-    .org-team .org-node { padding: 12px 8px; min-width: 110px; }
-    .org-team .org-node img { width: 50px; height: 50px; }
-    .org-team .org-node .name { font-size: 0.8rem; }
-    .org-team .org-node .role { font-size: 0.7rem; }
-    .org-manager .org-node { min-width: 150px; padding: 16px; }
-    .org-manager .org-node img { width: 70px; height: 70px; }
+    .org-tree {
+        transform: scale(0.8);
+        transform-origin: top center;
+        min-width: 1000px;
+    }
+    .org-section {
+        padding-bottom: 120px;
+    }
+    .org-branches { gap: 50px; }
+    .org-team { gap: 8px; }
+    .org-team .org-node { padding: 10px 5px; min-width: 95px; }
+    .org-team .org-node img { width: 45px; height: 45px; }
+    .org-team .org-node .name { font-size: 0.75rem; }
+    .org-team .org-node .role { font-size: 0.65rem; }
 }
 
 @media (max-width: 768px) {
