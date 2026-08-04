@@ -1110,7 +1110,7 @@ html_final = '''<!DOCTYPE html>
 }
 
 /* ===== RESPONSIVE ORG CHART (MOBILE TREE) ===== */
-/* الهيكل تحت العنوان مباشرة + أكبر على الموبايل */
+/* مظبوط على iPhone 11 Pro Max — ثابت ومتوسط */
 
 @media (max-width: 992px) {
     .about-container { grid-template-columns: 1fr; text-align: center; }
@@ -1118,58 +1118,36 @@ html_final = '''<!DOCTYPE html>
     .about-values { grid-template-columns: 1fr; }
     .about-image { order: -1; }
     
-    /* ← نقلل المسافة بين العنوان والهيكل */
-    .section-header { margin-bottom: 15px !important; }
+    /* نقلل المسافة بين العنوان والهيكل */
+    .section-header { margin-bottom: 10px !important; }
     
     .org-section { 
         overflow: hidden;
         padding: 0;
-        margin: 0 auto;       /* ← نشيل المسافة فوق */
+        margin: 0 auto;
         text-align: center;
     }
     .org-tree { 
-        zoom: 0.90;           /* ← أكبر بكتير (كان 0.85) */
         display: inline-block;
-        padding-top: 0;       /* ← نشيل البادنج فوق */
-        margin-top: -10px;    /* ← نرفعه شوية */
+        transform: scale(0.55);       /* ← حجم مناسب للتابلت */
+        transform-origin: top center;  /* ← بيوسط من فوق */
+        padding-top: 0;
+        margin-top: -5px;
     }
 }
 
 @media (max-width: 768px) {
-    .org-tree { zoom: 0.75; }   /* ← أكبر (كان 0.65) */
-}
-
-@media (max-width: 480px) {
-    .org-tree { zoom: 0.65; }   /* ← أكبر (كان 0.48) */
-}
-    .org-branches { gap: 80px; }
-    .org-team { gap: 12px; }
-    .org-team .org-node { padding: 12px 8px; min-width: 110px; }
-    .org-team .org-node img { width: 50px; height: 50px; }
-    .org-team .org-node .name { font-size: 0.8rem; }
-    .org-team .org-node .role { font-size: 0.7rem; }
-    .org-manager .org-node { min-width: 150px; padding: 16px; }
-    .org-manager .org-node img { width: 70px; height: 70px; }
-}
-
-@media (max-width: 768px) {
     .org-tree { 
-        transform: scale(0.65); 
-        transform-origin: top center;
-        min-width: 750px;
+        transform: scale(0.42);       /* ← حجم مناسب للتابلت الصغير */
     }
-    .org-section { padding-bottom: 30px; }
 }
 
+/* ← iPhone 11 Pro Max هنا (شاشة 414px) */
 @media (max-width: 480px) {
     .org-tree { 
-        transform: scale(0.48); 
-        transform-origin: top center;
-        min-width: 750px;
+        transform: scale(0.35);       /* ← غيّر الرقم ده للتحكم في الحجم */
     }
-    .org-section { padding: 10px 5px 20px; }
 }
-
     </style>
 </head>
 <body>
