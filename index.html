@@ -1110,7 +1110,7 @@ html_final = '''<!DOCTYPE html>
 }
 
 /* ===== RESPONSIVE ORG CHART (MOBILE TREE) ===== */
-/* الهيكل يفضل شكله الأفقي على الموبايل بس يتصغر proportionally */
+/* الهيكل ثابت في الموبايل — mini map بدون تمرير */
 
 @media (max-width: 992px) {
     .about-container { grid-template-columns: 1fr; text-align: center; }
@@ -1118,22 +1118,25 @@ html_final = '''<!DOCTYPE html>
     .about-values { grid-template-columns: 1fr; }
     .about-image { order: -1; }
     
-       .org-section { 
-        overflow-x: auto; 
-        overflow-y: hidden;
-        -webkit-overflow-scrolling: touch;
-        padding: 20px 10px 40px;
-        text-align: center;          /* ← جديد */
+    .org-section { 
+        overflow: hidden;        /* ← منع التمرير خالص */
+        padding: 20px 0;
+        text-align: center;
     }
     .org-tree { 
-        display: inline-flex;        /* ← غيّر flex لـ inline-flex */
-        flex-direction: column;
-        align-items: center;
-        padding-top: 10px; 
-        min-width: 750px;
-        transform: scale(0.85);
-        transform-origin: top center;
+        zoom: 0.85;              /* ← بيصغر الهيكل فعلياً */
+        display: inline-block;
+        padding-top: 10px;
     }
+}
+
+@media (max-width: 768px) {
+    .org-tree { zoom: 0.65; }
+}
+
+@media (max-width: 480px) {
+    .org-tree { zoom: 0.48; }
+}
     
     .org-branches { gap: 80px; }
     .org-team { gap: 12px; }
