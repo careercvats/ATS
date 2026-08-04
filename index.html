@@ -1166,40 +1166,6 @@ html_final = '''<!DOCTYPE html>
     .org-section { padding: 10px 5px 20px; }
 }
 
-@media (max-width: 600px) {
-    .org-team {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 10px;
-    }
-    .org-team .org-node:nth-child(-n+4)::before { display: none; }
-    .org-team .org-node:nth-child(-n+2)::before {
-        content: '';
-        position: absolute;
-        top: -10px;
-        left: 50%;
-        transform: translateX(-50%);
-        width: 2px;
-        height: 10px;
-        background: linear-gradient(to bottom, #d4af37, rgba(212,175,55,0.3));
-    }
-    .org-manager::after { height: 20px; bottom: -20px; }
-    .sales-branch .org-team::before,
-    .exec-branch .org-team::before { top: -20px; }
-    .org-branch::before { height: 20px; }
-    .org-ceo::after { height: 20px; bottom: -20px; }
-    .org-branch { padding-top: 20px; }
-    .org-team { margin-top: 20px; }
-}
-
-@media (max-width: 480px) {
-    .org-team { grid-template-columns: repeat(2, 1fr); gap: 8px; }
-    .org-node { min-width: auto; padding: 10px 5px; }
-    .org-node img { width: 50px; height: 50px; }
-    .org-node .name { font-size: 0.75rem; }
-    .org-node .role { font-size: 0.65rem; }
-    .org-manager .org-node { min-width: 140px; padding: 15px; }
-    .org-manager .org-node img { width: 65px; height: 65px; }
-}
     </style>
 </head>
 <body>
